@@ -43,11 +43,41 @@ RenderWindow* create_window()
     return window;
 }
 
+Text* create_text(String txt, Font* fnt, int i, Color c)
+{
+    Text* text = new Text();
+    text->setFont(*fnt);
+    text->setString(txt);
+    text->setCharacterSize(20);
+    text->setFillColor(c);
+    text->setStyle(Text::Bold);
+    text->setPosition(0, i*24);
+    return text;
+}
+
+stats_game* create_stats(Font* fnt)
+{
+    stats_game *stats = new stats_game();
+    stats->nb_imune = 0;
+    stats->nb_death = 0;
+    stats->nb_sick = 0;
+    stats->nb_not_sick = 0;
+    stats->txt_imune = create_text("Imunes : ",fnt, 2, LIGHT_BLUE);
+    stats->txt_death = create_text("Dead : ",fnt, 3, Color::White);
+    stats->txt_sick = create_text("Sick : ",fnt, 1, RED);
+    stats->txt_not_sick = create_text("Not Sick : ",fnt, 0, BEIGE);
+
+    return stats;
+}
+
 window_game* create_window_game()
 {
     srand((unsigned)time(0));
     window_game *game = new window_game();
     game->window = create_window();
     game->clock = new Clock();
+    game->font = new Font();
+    game->font->loadFromFile("font/Oswald-Bold.ttf");
+    game->stats = create_stats(game->font);
     return game;
 }

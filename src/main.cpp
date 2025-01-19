@@ -14,7 +14,7 @@ int main()
             compute_event(event, game->window);
         }
         update(heros, game);
-        draw(game->window, heros);
+        draw(game, heros);
     }
 
     delete game;

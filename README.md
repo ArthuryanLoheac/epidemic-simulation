@@ -1,2 +1,2 @@
 # epidemic-simulation
-A project for simulating an epidemic
+An epidemic simulation project

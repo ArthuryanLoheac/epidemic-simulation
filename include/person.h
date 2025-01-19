@@ -20,8 +20,6 @@
             float speed;
             int id;
             PersonDisease state = NOT_SICK;
-            Clock timeInfection;
-            Vector2f direction;
             Vector2f pos;
             Vector2f objectif;
 
@@ -43,6 +41,9 @@
             }
 
         private:
+            Clock timeInfection;
+            Vector2f direction;
+        
             float get_dist(Vector2f a, Vector2f b)
             {
                 return sqrt(pow((a.x - b.x), 2) + pow((b.y - a.y), 2));
