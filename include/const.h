@@ -14,10 +14,13 @@
     const int SPEED_MIN = 30;
     const int SPEED_MAX = 50;
 
+    const float TIME_SICK = 5.f;
+    const int ONE_OF_X_DEAD = 2;
+
     const Color DARK_BLUE = Color(41, 40, 49);
     const Color BLUE = Color(51, 63, 88);
     const Color LIGHT_BLUE = Color(74, 122, 150);
-    const Color RED = Color(238, 134, 149);
-    const Color BEIGE = Color(251, 187, 173);
+    const Color RED = Color(255, 134, 149);
+    const Color BEIGE = Color(201, 187, 173);
 
 #endif

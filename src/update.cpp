@@ -9,7 +9,8 @@ void update(Person** heros, window_game* game)
 
     while(heros[i])
     {
-        heros[i]->update_pers(game->deltaTime, heros);
+        if (heros[i]->state != DEAD)
+            heros[i]->update_pers(game->deltaTime, heros);
         i++;
     }
 }

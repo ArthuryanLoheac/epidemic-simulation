@@ -10,7 +10,8 @@
     enum PersonDisease {
         NOT_SICK,
         SICK,
-        IMUNE
+        IMUNE,
+        DEAD
     };
 
     class Person {
@@ -19,6 +20,7 @@
             float speed;
             int id;
             PersonDisease state = NOT_SICK;
+            Clock timeInfection;
             Vector2f direction;
             Vector2f pos;
             Vector2f objectif;
@@ -31,18 +33,13 @@
 
             void update_pers(float deltaTime, Person** lst)
             {
+                check_disease_time();
                 pos += (direction * deltaTime * speed);
                 circle->setPosition(pos);
                 if (get_dist(pos, objectif) <= 10.f)
                    setNewObj();
                 check_infected(lst);
-                if (state == NOT_SICK) {
-                    circle->setFillColor(BEIGE);
-                } else if (state == SICK) {
-                    circle->setFillColor(RED);
-                } else {
-                    circle->setFillColor(LIGHT_BLUE);
-                }
+                set_color();
             }
 
         private:
@@ -51,14 +48,40 @@
                 return sqrt(pow((a.x - b.x), 2) + pow((b.y - a.y), 2));
             }
 
+            void check_disease_time()
+            {
+                if (state == SICK && timeInfection.getElapsedTime() >= seconds(TIME_SICK)) {
+                    if (rand() % ONE_OF_X_DEAD) {
+                        state = DEAD;
+                    } else {    
+                        state = IMUNE;
+                    }
+                }
+            }
+
+            void set_color()
+            {
+                if (state == NOT_SICK) {
+                    circle->setFillColor(BEIGE);
+                } else if (state == SICK) {
+                    circle->setFillColor(RED);
+                } else if (state == IMUNE) {
+                    circle->setFillColor(LIGHT_BLUE);
+                } else {
+                    circle->setFillColor(Color::Black);
+                }
+            }
+
             void check_infected(Person** lst)
             {
                 int i = 0;
 
                 while(lst[i]) {
-                    if (i != id && get_dist(pos, lst[i]->pos) < RADIUS_INFECTION && lst[i]->state == SICK)
+                    if (i != id && get_dist(pos, lst[i]->pos) < RADIUS_INFECTION
+                        && lst[i]->state == SICK && state == NOT_SICK)
                     {
                         state = SICK;
+                        timeInfection.restart();
                     }
                     i++;
                 }
