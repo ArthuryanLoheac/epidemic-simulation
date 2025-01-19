@@ -11,6 +11,7 @@ void draw_circles_dead(RenderWindow *window, Person** lst)
         i++;
     }
 }
+
 void draw_circles_other(RenderWindow *window, Person** lst)
 {
     int i = 0;

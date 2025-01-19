@@ -51,12 +51,15 @@
 
             void check_disease_time()
             {
-                if (state == SICK && timeInfection.getElapsedTime() >= seconds(TIME_SICK)) {
-                    if (rand() % ONE_OF_X_DEAD) {
-                        state = IMUNE;
-                    } else {    
+                if (state == SICK && timeInfection.getElapsedTime() >= seconds(1.f)) {
+                    if ((rand() % 100) <= PERCENT_CHANCE_DEAD) {
                         state = DEAD;
+                    } else if ((rand() % 100) <= PERCENT_CHANCE_IMUNE) {
+                        state = IMUNE;
+                    } else if ((rand() % 100) <= PERCENT_CHANCE_NOT_SICK) {
+                        state = NOT_SICK;
                     }
+                    timeInfection.restart();
                 }
             }
 

@@ -1,5 +1,8 @@
 # epidemic-simulation
 An epidemic simulation project
+Use the key R to restart a simulation
+
+In a terminal use the command "make run" or "make" and "./simulation" to start the simulation
 
 - **WIN_WIDTH** (default :1080)    
 Window width
@@ -17,7 +20,9 @@ Minimum movement speed of characters
 Maximum movement speed of characters
 - **NUMBER_INFECTED_START** (default :2)  
 Number of infécté at start
-- **TIME_SICK** (default :5.f)  
-length of time for which infactees are ill
-- **ONE_OF_X_DEAD** (default :2)  
-At the end of the duration of illness, one on how many people die (otherwise becomes imunized)
+- **PERCENT_CHANCE_DEAD** (default : 1)  
+Percent of chance of dying every seconds if sick
+- **PERCENT_CHANCE_IMUNE** (default : 5)  
+Percent of chance of being imune every seconds if sick
+- **PERCENT_CHANCE_NOT_SICK** (default : 10)  
+Percent of chance of not being sick anymore but not imune every seconds if sick

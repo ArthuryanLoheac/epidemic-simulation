@@ -13,10 +13,11 @@
     const int NUMBER_PERSON = 200;
     const int SPEED_MIN = 30;
     const int SPEED_MAX = 50;
-    const int NUMBER_INFECTED_START = 2;
 
-    const float TIME_SICK = 5.f;
-    const int ONE_OF_X_DEAD = 2;
+    const int NUMBER_INFECTED_START = 2;
+    const int PERCENT_CHANCE_DEAD = 1;
+    const int PERCENT_CHANCE_IMUNE = 5;
+    const int PERCENT_CHANCE_NOT_SICK = 10;
 
     const Color DARK_BLUE = Color(41, 40, 49);
     const Color BLUE = Color(51, 63, 88);
