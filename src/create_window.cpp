@@ -1,6 +1,7 @@
 #include "sim.h"
 
 using namespace sf;
+using namespace std;
 
 CircleShape *create_circle(Vector2f pos)
 {
@@ -32,7 +33,9 @@ Person** create_lst_person()
             rand() % (WIN_HEIGHT-RADIUS_CIRCLE) + RADIUS_CIRCLE/2);
     }
     lst[NUMBER_PERSON] = NULL;
-    lst[0]->state = SICK;
+    for (int i = 0; i < min(NUMBER_INFECTED_START, NUMBER_PERSON); i++) {
+        lst[i]->state = SICK; 
+    }
     return lst;
 }
 
@@ -46,6 +49,7 @@ RenderWindow* create_window()
 Text* create_text(String txt, Font* fnt, int i, Color c)
 {
     Text* text = new Text();
+
     text->setFont(*fnt);
     text->setString(txt);
     text->setCharacterSize(20);
@@ -58,6 +62,7 @@ Text* create_text(String txt, Font* fnt, int i, Color c)
 stats_game* create_stats(Font* fnt)
 {
     stats_game *stats = new stats_game();
+
     stats->nb_imune = 0;
     stats->nb_death = 0;
     stats->nb_sick = 0;
@@ -68,7 +73,6 @@ stats_game* create_stats(Font* fnt)
     stats->txt_death = create_text("Dead : ",fnt, 3, Color::White);
     stats->txt_sick = create_text("Sick : ",fnt, 1, RED);
     stats->txt_not_sick = create_text("Not Sick : ",fnt, 0, BEIGE);
-
     return stats;
 }
 

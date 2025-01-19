@@ -13,6 +13,7 @@
     const int NUMBER_PERSON = 200;
     const int SPEED_MIN = 30;
     const int SPEED_MAX = 50;
+    const int NUMBER_INFECTED_START = 2;
 
     const float TIME_SICK = 5.f;
     const int ONE_OF_X_DEAD = 2;

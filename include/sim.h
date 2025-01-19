@@ -5,7 +5,7 @@
     #include <SFML/Graphics.hpp>
     #include "person.h"
     #include "const.h"
-    #include <string> 
+    #include <string>
 
     struct stats_game {
         int nb_imune;
@@ -29,7 +29,7 @@
     };
 
     void draw(window_game *game, Person** lst);
-    void compute_event(Event event, RenderWindow *window);
+    void compute_event(Event event, RenderWindow *window, Person*** lst);
     window_game* create_window_game();
     void update(Person** heros, window_game* game);
     Person** create_lst_person();

@@ -3,8 +3,8 @@
 #define PERSON_H
 
     #include <SFML/Graphics.hpp>
-    #include <math.h>
     #include "const.h"
+    #include <math.h>
     using namespace sf;
 
     enum PersonDisease {
@@ -53,9 +53,9 @@
             {
                 if (state == SICK && timeInfection.getElapsedTime() >= seconds(TIME_SICK)) {
                     if (rand() % ONE_OF_X_DEAD) {
-                        state = DEAD;
-                    } else {    
                         state = IMUNE;
+                    } else {    
+                        state = DEAD;
                     }
                 }
             }
