@@ -9,7 +9,7 @@ void update(Person** heros, window_game* game)
 
     while(heros[i])
     {
-        heros[i]->update_pers(game->deltaTime);
+        heros[i]->update_pers(game->deltaTime, heros);
         i++;
     }
 }
