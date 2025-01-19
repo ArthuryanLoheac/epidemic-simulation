@@ -1,7 +1,7 @@
 # epidemic-simulation
 An epidemic simulation project
 
-- **WIN_WIDTH **(default :1080)    
+- **WIN_WIDTH** (default :1080)    
 Window width
 - **WIN_HEIGHT** (default :720)  
 Window height
