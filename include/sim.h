@@ -8,14 +8,16 @@
     #include <string> 
 
     struct stats_game {
-        Text* txt_imune;
         int nb_imune;
-        Text* txt_death;
+        Text* txt_imune;
         int nb_death;
-        Text* txt_sick;
+        Text* txt_death;
         int nb_sick;
-        Text* txt_not_sick;
+        Text* txt_sick;
         int nb_not_sick;
+        Text* txt_not_sick;
+        int nb_alives;
+        Text* txt_alives;
     };
 
     struct window_game {

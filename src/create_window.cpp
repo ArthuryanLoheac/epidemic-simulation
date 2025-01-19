@@ -62,7 +62,9 @@ stats_game* create_stats(Font* fnt)
     stats->nb_death = 0;
     stats->nb_sick = 0;
     stats->nb_not_sick = 0;
+    stats->nb_alives = 0;
     stats->txt_imune = create_text("Imunes : ",fnt, 2, LIGHT_BLUE);
+    stats->txt_alives = create_text("Alives : ",fnt, 4, Color::White);
     stats->txt_death = create_text("Dead : ",fnt, 3, Color::White);
     stats->txt_sick = create_text("Sick : ",fnt, 1, RED);
     stats->txt_not_sick = create_text("Not Sick : ",fnt, 0, BEIGE);

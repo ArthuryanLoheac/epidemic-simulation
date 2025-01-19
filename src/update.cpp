@@ -1,5 +1,6 @@
 #include "sim.h"
 using namespace sf;
+using namespace std;
 
 void update_all_person(Person** heros, window_game* game)
 {
@@ -29,13 +30,15 @@ int get_total_state(Person** heros, PersonDisease state)
 void update_stats(stats_game* stats, Person** heros)
 {
     stats->nb_imune = get_total_state(heros, IMUNE);
-    stats->txt_imune->setString("Imunes : " + std::to_string(stats->nb_imune));
+    stats->txt_imune->setString("Imunes : " + to_string(stats->nb_imune));
     stats->nb_death = get_total_state(heros, DEAD);
-    stats->txt_death->setString("Death : " + std::to_string(stats->nb_death));
+    stats->txt_death->setString("Deads : " + to_string(stats->nb_death));
     stats->nb_sick = get_total_state(heros, SICK);
-    stats->txt_sick->setString("Sick : " + std::to_string(stats->nb_sick));
+    stats->txt_sick->setString("Sick : " + to_string(stats->nb_sick));
     stats->nb_not_sick = get_total_state(heros, NOT_SICK);
-    stats->txt_not_sick->setString("Not Sick : " + std::to_string(stats->nb_not_sick));
+    stats->txt_not_sick->setString("Not Sick : " + to_string(stats->nb_not_sick));
+    stats->nb_alives = stats->nb_imune + stats->nb_sick + stats->nb_not_sick;
+    stats->txt_alives->setString("Alives : " + to_string(stats->nb_alives));
 }
 
 void update(Person** heros, window_game* game)
