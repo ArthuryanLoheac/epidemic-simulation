@@ -8,7 +8,7 @@ CircleShape *create_circle(Vector2f pos)
     CircleShape *circle = new CircleShape();
     circle->setRadius(RADIUS_CIRCLE);
     circle->setOrigin(RADIUS_CIRCLE/2, RADIUS_CIRCLE/2);
-    circle->setFillColor(BEIGE);
+    circle->setFillColor(NOT_SICK_COLOR);
     circle->setPosition(pos);
     return circle;
 }
@@ -68,11 +68,13 @@ stats_game* create_stats(Font* fnt)
     stats->nb_sick = 0;
     stats->nb_not_sick = 0;
     stats->nb_alives = 0;
-    stats->txt_imune = create_text("Imunes : ",fnt, 2, LIGHT_BLUE);
-    stats->txt_alives = create_text("Alives : ",fnt, 4, Color::White);
-    stats->txt_death = create_text("Dead : ",fnt, 3, Color::White);
-    stats->txt_sick = create_text("Sick : ",fnt, 1, RED);
-    stats->txt_not_sick = create_text("Not Sick : ",fnt, 0, BEIGE);
+    stats->nb_recovered = 0;
+    stats->txt_imune = create_text("Imunes : ",fnt, 3, IMUNE_COLOR);
+    stats->txt_recovered = create_text("Recovered : ",fnt, 1, RECOVERED_COLOR);
+    stats->txt_alives = create_text("Alives : ",fnt, 5, Color::White);
+    stats->txt_death = create_text("Dead : ",fnt, 4, Color::White);
+    stats->txt_sick = create_text("Sick : ",fnt, 2, SICK_COLOR);
+    stats->txt_not_sick = create_text("Not Sick : ",fnt, 0, NOT_SICK_COLOR);
     return stats;
 }
 

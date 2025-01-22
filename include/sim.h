@@ -5,6 +5,7 @@
     #include <SFML/Graphics.hpp>
     #include "person.h"
     #include "const.h"
+    #include "color.h"
     #include <string>
 
     struct stats_game {
@@ -18,6 +19,8 @@
         Text* txt_not_sick;
         int nb_alives;
         Text* txt_alives;
+        int nb_recovered;
+        Text* txt_recovered;
     };
 
     struct window_game {

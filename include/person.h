@@ -4,12 +4,14 @@
 
     #include <SFML/Graphics.hpp>
     #include "const.h"
+    #include "color.h"
     #include <math.h>
     using namespace sf;
 
     enum PersonDisease {
         NOT_SICK,
         SICK,
+        RECOVERED,
         IMUNE,
         DEAD
     };
@@ -51,28 +53,28 @@
 
             void check_disease_time()
             {
-                if (state == SICK && timeInfection.getElapsedTime() >= seconds(1.f)) {
-                    if ((rand() % 100) <= PERCENT_CHANCE_DEAD) {
+                if (state == SICK && timeInfection.getElapsedTime() >= seconds(TIME_SICK)) {
+                    int id = rand() % (PERCENT_DEAD + PERCENT_RECOVERED);
+                    if (id < PERCENT_DEAD) {
                         state = DEAD;
-                    } else if ((rand() % 100) <= PERCENT_CHANCE_IMUNE) {
-                        state = IMUNE;
-                    } else if ((rand() % 100) <= PERCENT_CHANCE_NOT_SICK) {
-                        state = NOT_SICK;
+                    } else if (id < PERCENT_RECOVERED) {
+                        state = RECOVERED;
                     }
-                    timeInfection.restart();
                 }
             }
 
             void set_color()
             {
                 if (state == NOT_SICK) {
-                    circle->setFillColor(BEIGE);
+                    circle->setFillColor(NOT_SICK_COLOR);
                 } else if (state == SICK) {
-                    circle->setFillColor(RED);
+                    circle->setFillColor(SICK_COLOR);
                 } else if (state == IMUNE) {
-                    circle->setFillColor(LIGHT_BLUE);
-                } else {
-                    circle->setFillColor(Color::Black);
+                    circle->setFillColor(IMUNE_COLOR);
+                } else if (state == DEAD) {
+                    circle->setFillColor(DEAD_COLOR);
+                } else if (state == RECOVERED) {
+                    circle->setFillColor(RECOVERED_COLOR);
                 }
             }
 

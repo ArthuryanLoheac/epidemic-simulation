@@ -20,9 +20,9 @@ Minimum movement speed of characters
 Maximum movement speed of characters
 - **NUMBER_INFECTED_START** (default :2)  
 Number of infécté at start
-- **PERCENT_CHANCE_DEAD** (default : 1)  
-Percent of chance of dying every seconds if sick
-- **PERCENT_CHANCE_IMUNE** (default : 5)  
-Percent of chance of being imune every seconds if sick
-- **PERCENT_CHANCE_NOT_SICK** (default : 10)  
-Percent of chance of not being sick anymore but not imune every seconds if sick
+- **TIME_SICK** (default :3)  
+Time in seconds of the ill
+- **PERCENT_DEAD** (default :10)  
+Percent of chance of dying after TIME_SICK
+- **PERCENT_RECOVERED** (default :90)  
+Percent of chance of recover after TIME_SICK

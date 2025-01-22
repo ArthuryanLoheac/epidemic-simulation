@@ -37,7 +37,9 @@ void update_stats(stats_game* stats, Person** heros)
     stats->txt_sick->setString("Sick : " + to_string(stats->nb_sick));
     stats->nb_not_sick = get_total_state(heros, NOT_SICK);
     stats->txt_not_sick->setString("Not Sick : " + to_string(stats->nb_not_sick));
-    stats->nb_alives = stats->nb_imune + stats->nb_sick + stats->nb_not_sick;
+    stats->nb_recovered = get_total_state(heros, RECOVERED);;
+    stats->txt_recovered->setString("Recovered : " + to_string(stats->nb_recovered));
+    stats->nb_alives = stats->nb_imune + stats->nb_sick + stats->nb_not_sick + stats->nb_recovered;
     stats->txt_alives->setString("Alives : " + to_string(stats->nb_alives));
 }
 

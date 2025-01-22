@@ -31,6 +31,7 @@ void draw_stats(stats_game *stats, RenderWindow *window)
     window->draw(*(stats->txt_sick));
     window->draw(*(stats->txt_not_sick));
     window->draw(*(stats->txt_alives));
+    window->draw(*(stats->txt_recovered));
 }
 
 void draw(window_game *game, Person** lst)
