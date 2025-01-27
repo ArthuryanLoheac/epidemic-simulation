@@ -28,7 +28,7 @@ SRC	=	src/draw.cpp \
 
 NAME	=	simulation
 
-CPPFLAGS	= -I./include -lsfml-graphics -lsfml-window -lsfml-system \
+CPPFLAGS	= -I./include -lsfml-graphics -lsfml-window -lsfml-system -std=c++20 \
 
 all: $(NAME)
 

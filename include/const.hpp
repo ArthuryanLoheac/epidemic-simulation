@@ -4,11 +4,11 @@
     const int WIN_WIDTH = 1080;
     const int WIN_HEIGHT = 720;
 
-    const int RADIUS_CIRCLE = 5;
-    const int RADIUS_INFECTION = 10;
+    const int RADIUS_CIRCLE = 2;
+    const int RADIUS_INFECTION = 4;
 
-    const int HOUSE_SIZE = 20;
-    const int NB_HOUSE = 20;
+    const int HOUSE_SIZE = 10;
+    const int NB_HOUSE = 50;
     const int NB_WORKS = 10;
 
     const int NUMBER_PERSON = 200;

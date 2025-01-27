@@ -57,7 +57,7 @@ int main()
     {
         Event event;
         while (game->window->pollEvent(event)) {
-            compute_event(event, game->window, heros, lstInteretPoints);
+            compute_event(event, game, heros, lstInteretPoints);
         }
         update(heros, game, lstInteretPoints);
         draw(game, heros, lstInteretPoints);
