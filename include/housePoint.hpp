@@ -1,6 +1,5 @@
 #pragma once
 #include "interetPoint.hpp"
-#include "color.hpp"
 #include "person.hpp"
 
 class housePoint : public interetPoint

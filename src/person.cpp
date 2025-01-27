@@ -12,10 +12,21 @@ void Person::setNewObj() {
     direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
 }
 
+void Person::setHome(interetPoint *home)
+{
+    _home = home;
+}
+
 void Person::setNewObj(std::vector<interetPoint *> &lstInteretPoints)
 {
     interetPoint *point = lstInteretPoints[rand() % lstInteretPoints.size()];
 
+    objectif = point->getPos();
+    direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
+}
+
+void Person::setNewObj(interetPoint *point)
+{
     objectif = point->getPos();
     direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
 }
@@ -31,14 +42,12 @@ void Person::setListType(std::vector<interetPoint*> &lstSrc, std::vector<interet
 
 void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
 {
-    std::vector<interetPoint *> lstHouses;
-    setListType(lstInteretPoints, lstHouses, interetPoint::HOUSE);
     std::vector<interetPoint *> lstWork;
     setListType(lstInteretPoints, lstWork, interetPoint::WORK);
 
 
     if (isGoingWorking) {
-        setNewObj(lstHouses);
+        setNewObj(_home);
         isGoingWorking = false;
     } else {
         setNewObj(lstWork);

@@ -37,12 +37,12 @@ void assignPerson(std::vector<Person *> &heros, std::vector<interetPoint *> &lst
     setListType(lstInteretPoints, lstHouse, interetPoint::HOUSE);
     std::vector<interetPoint*> lstWork;
     setListType(lstInteretPoints, lstWork, interetPoint::WORK);
-    
 
     for (int i = 0; i < heros.size(); i++) {
         id = rand() % lstHouse.size();
         house = ((housePoint *)(lstHouse[id]));
         house->addHabitant(heros[i]);
+        heros[i]->setHome(house);
         heros[i]->pos = house->getPos() + sf::Vector2f((rand() % HOUSE_SIZE) - (HOUSE_SIZE/2), (rand() % HOUSE_SIZE) - (HOUSE_SIZE/2));
         heros[i]->setNewObj(lstWork);
     }

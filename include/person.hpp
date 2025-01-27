@@ -25,9 +25,12 @@ class Person {
         Vector2f objectif;
         bool isGoingWorking;
         bool isBackHome;
+        interetPoint *_home;
 
         void setNewObj();
+        void setHome(interetPoint *home);
         void setNewObj(std::vector<interetPoint *> &lstInteretPoints);
+        void setNewObj(interetPoint * point);
         void update_pers(float deltaTime, std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints);
         Person();
 
