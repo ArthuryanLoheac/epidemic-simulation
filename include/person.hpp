@@ -4,6 +4,7 @@
 #include "const.hpp"
 #include "color.hpp"
 #include <math.h>
+#include "interetPoint.hpp"
 using namespace sf;
 
 enum PersonDisease {
@@ -24,7 +25,8 @@ class Person {
         Vector2f objectif;
 
         void setNewObj();
-        void update_pers(float deltaTime, std::vector<Person *> lst);
+        void setNewObj(std::vector<interetPoint *> &lstInteretPoints);
+        void update_pers(float deltaTime, std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints);
 
     private:
         Clock timeInfection;

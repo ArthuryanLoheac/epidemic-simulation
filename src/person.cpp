@@ -1,4 +1,5 @@
 #include "person.hpp"
+#include <housePoint.hpp>
 
 void Person::setNewObj() {
     objectif = Vector2f(rand() % (WIN_WIDTH-RADIUS_CIRCLE) + RADIUS_CIRCLE/2,
@@ -6,13 +7,21 @@ void Person::setNewObj() {
     direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
 }
 
-void Person::update_pers(float deltaTime, std::vector<Person *> lst)
+void Person::setNewObj(std::vector<interetPoint *> &lstInteretPoints)
+{
+    interetPoint *point = lstInteretPoints[rand() % lstInteretPoints.size()];
+
+    objectif = point->getPos();
+    direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
+}
+
+void Person::update_pers(float deltaTime, std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints)
 {
     check_disease_time();
     pos += (direction * deltaTime * speed);
     circle->setPosition(pos);
     if (get_dist(pos, objectif) <= 10.f)
-        setNewObj();
+        setNewObj(lstInteretPoints);
     check_infected(lst);
     set_color();
 }

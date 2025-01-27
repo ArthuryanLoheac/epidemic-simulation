@@ -16,6 +16,16 @@ interetPoint::~interetPoint()
 {
 }
 
+interetPoint::TypePoint interetPoint::getType(void)
+{
+    return _type;
+}
+
+sf::Vector2f interetPoint::getPos(void)
+{
+    return _pos;
+}
+
 void interetPoint::draw(sf::RenderWindow *window)
 {
     window->draw(_rect);
@@ -23,5 +33,5 @@ void interetPoint::draw(sf::RenderWindow *window)
 
 void interetPoint::update(void)
 {
-    
+
 }

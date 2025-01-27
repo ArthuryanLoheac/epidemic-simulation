@@ -7,9 +7,10 @@
     const int RADIUS_CIRCLE = 5;
     const int RADIUS_INFECTION = 10;
 
-    const int HOUSE_SIZE = 40;
+    const int HOUSE_SIZE = 20;
+    const int NB_HOUSE = 40;
 
-    const int NUMBER_PERSON = 50;
+    const int NUMBER_PERSON = 100;
     const int SPEED_MIN = 30;
     const int SPEED_MAX = 50;
 

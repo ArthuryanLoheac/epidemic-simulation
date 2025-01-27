@@ -2,13 +2,13 @@
 using namespace sf;
 using namespace std;
 
-void update_all_person(std::vector<Person *> heros, window_game* game)
+void update_all_person(std::vector<Person *> heros, window_game* game, std::vector<interetPoint *> &lstInteretPoints)
 {
     int i = 0;
     for (int i = 0; i < heros.size(); i++)
     {
         if (heros[i]->state != DEAD)
-            heros[i]->update_pers(game->deltaTime, heros);
+            heros[i]->update_pers(game->deltaTime, heros, lstInteretPoints);
         i++;
     }
 }
@@ -43,9 +43,9 @@ void update_stats(stats_game* stats, std::vector<Person *> heros)
     stats->txt_alives->setString("Alives : " + to_string(stats->nb_alives));
 }
 
-void update(std::vector<Person *> heros, window_game* game)
+void update(std::vector<Person *> heros, window_game* game, std::vector<interetPoint *> &lstInteretPoints)
 {
     game->deltaTime = game->clock->restart().asSeconds();
-    update_all_person(heros, game);
+    update_all_person(heros, game, lstInteretPoints);
     update_stats(game->stats, heros);
 }

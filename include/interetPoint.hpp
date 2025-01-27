@@ -18,6 +18,8 @@ class interetPoint
     public:
         interetPoint(size_t x, size_t y, size_t sizeX, size_t sizeY);
         ~interetPoint();
+        interetPoint::TypePoint getType(void);
+        sf::Vector2f getPos(void);
         void draw(sf::RenderWindow *window);
         virtual void update(void);
 };
