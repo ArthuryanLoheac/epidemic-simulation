@@ -83,5 +83,7 @@ window_game* create_window_game()
     game->font = new Font();
     game->font->loadFromFile("font/Oswald-Bold.ttf");
     game->stats = create_stats(game->font);
+    game->Days = 1;
+    game->txt_days = create_text("Days : 1",game->font, (WIN_HEIGHT / 24) - 1, sf::Color::White);
     return game;
 }

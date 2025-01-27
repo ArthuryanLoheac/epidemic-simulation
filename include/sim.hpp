@@ -33,6 +33,8 @@
         float deltaTime;
         stats_game* stats;
         Font* font;
+        int Days;
+        Text* txt_days;
     };
 
     void draw(window_game *game, std::vector<Person *> lst, std::vector<interetPoint *> lstPoints);

@@ -63,11 +63,12 @@ int isAllBack(std::vector<Person *> heros)
     return len;
 }
 
-void newDay(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints)
+void newDay(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game* game)
 {
     std::vector<interetPoint *> lstWork;
     setListType(lstInteretPoints, lstWork, interetPoint::WORK);
 
+    game->Days++;
     for (int i = 0; i < heros.size(); i++) {
         heros[i]->isBackHome = false;
         heros[i]->isGoingWorking = (rand() % NB_PLACE_VISIT_A_DAY) + 1;
@@ -78,8 +79,9 @@ void newDay(std::vector<Person *> &heros, std::vector<interetPoint *> &lstIntere
 void update(std::vector<Person *> &heros, window_game* game, std::vector<interetPoint *> &lstInteretPoints)
 {
     if (isAllBack(heros) == 0)
-        newDay(heros, lstInteretPoints);
+        newDay(heros, lstInteretPoints, game);
     game->deltaTime = game->clock->restart().asSeconds();
     update_all_person(heros, game, lstInteretPoints);
     update_stats(game->stats, heros);
+    game->txt_days->setString("Days : " + to_string(game->Days));
 }
