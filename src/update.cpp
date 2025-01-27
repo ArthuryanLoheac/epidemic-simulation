@@ -2,10 +2,10 @@
 using namespace sf;
 using namespace std;
 
-void update_all_person(Person** heros, window_game* game)
+void update_all_person(std::vector<Person *> heros, window_game* game)
 {
     int i = 0;
-    while(heros[i])
+    for (int i = 0; i < heros.size(); i++)
     {
         if (heros[i]->state != DEAD)
             heros[i]->update_pers(game->deltaTime, heros);
@@ -13,12 +13,12 @@ void update_all_person(Person** heros, window_game* game)
     }
 }
 
-int get_total_state(Person** heros, PersonDisease state)
+int get_total_state(std::vector<Person *> heros, PersonDisease state)
 {
     int nb = 0;
     int i = 0;
 
-    while(heros[i])
+    for (int i = 0; i < heros.size(); i++)
     {
         if (heros[i]->state == state)
             nb++;
@@ -27,7 +27,7 @@ int get_total_state(Person** heros, PersonDisease state)
     return nb;
 }
 
-void update_stats(stats_game* stats, Person** heros)
+void update_stats(stats_game* stats, std::vector<Person *> heros)
 {
     stats->nb_imune = get_total_state(heros, IMUNE);
     stats->txt_imune->setString("Imunes : " + to_string(stats->nb_imune));
@@ -43,7 +43,7 @@ void update_stats(stats_game* stats, Person** heros)
     stats->txt_alives->setString("Alives : " + to_string(stats->nb_alives));
 }
 
-void update(Person** heros, window_game* game)
+void update(std::vector<Person *> heros, window_game* game)
 {
     game->deltaTime = game->clock->restart().asSeconds();
     update_all_person(heros, game);

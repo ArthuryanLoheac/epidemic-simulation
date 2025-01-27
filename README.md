@@ -12,7 +12,7 @@ Window height
 Defines the radius of circles representing people
 - **RADIUS_INFECTION** (default :20)  
 Distance between 2 people to be inferred
-- **NUMBER_PERSON** (default :200)  
+- **NUMBER_std::vector<Person *> (default :200)  
 Number of people
 - **SPEED_MIN** (default :30)  
 Minimum movement speed of characters

@@ -6,7 +6,10 @@
     #include "person.hpp"
     #include "const.hpp"
     #include "color.hpp"
+    #include "interetPoint.hpp"
+    #include "housePoint.hpp"
     #include <string>
+    #include <vector>
 
     struct stats_game {
         int nb_imune;
@@ -31,9 +34,9 @@
         Font* font;
     };
 
-    void draw(window_game *game, Person** lst);
-    void compute_event(Event event, RenderWindow *window, Person*** lst);
+    void draw(window_game *game, std::vector<Person *> lst, std::vector<interetPoint *> lstPoints);
+    void compute_event(Event event, RenderWindow *window, std::vector<Person *> lst);
     window_game* create_window_game();
-    void update(Person** heros, window_game* game);
-    Person** create_lst_person();
+    void update(std::vector<Person *> heros, window_game* game);
+    void create_lst_person(std::vector<Person *> &lst);
 #endif

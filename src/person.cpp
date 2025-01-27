@@ -6,7 +6,7 @@ void Person::setNewObj() {
     direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
 }
 
-void Person::update_pers(float deltaTime, Person** lst)
+void Person::update_pers(float deltaTime, std::vector<Person *> lst)
 {
     check_disease_time();
     pos += (direction * deltaTime * speed);
@@ -49,11 +49,11 @@ void Person::set_color()
     }
 }
 
-void Person::check_infected(Person** lst)
+void Person::check_infected(std::vector<Person *> lst)
 {
     int i = 0;
 
-    while(lst[i]) {
+    for (int i = 0; i < lst.size(); i++) {
         if (i != id && get_dist(pos, lst[i]->pos) < RADIUS_INFECTION
             && lst[i]->state == SICK && state == NOT_SICK)
         {

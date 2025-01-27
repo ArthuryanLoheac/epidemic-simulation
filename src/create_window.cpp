@@ -24,19 +24,17 @@ Person *create_person(int id, float x = 0.f, float y = 0.f)
     return pers;
 }
 
-Person** create_lst_person()
-{   
-    Person** lst = new Person*[NUMBER_PERSON+1];
-    for (int i = 0; i<NUMBER_PERSON; i++) {
-        lst[i] = create_person(i,
+void create_lst_person(vector<Person *> &lst)
+{
+    lst.clear();
+    for (int i = 0; i < NUMBER_PERSON; i++) {
+        lst.push_back(create_person(i,
             rand() % (WIN_WIDTH-RADIUS_CIRCLE) + RADIUS_CIRCLE/2,
-            rand() % (WIN_HEIGHT-RADIUS_CIRCLE) + RADIUS_CIRCLE/2);
+            rand() % (WIN_HEIGHT-RADIUS_CIRCLE) + RADIUS_CIRCLE/2));
     }
-    lst[NUMBER_PERSON] = NULL;
     for (int i = 0; i < min(NUMBER_INFECTED_START, NUMBER_PERSON); i++) {
         lst[i]->state = SICK; 
     }
-    return lst;
 }
 
 RenderWindow* create_window()

@@ -22,6 +22,8 @@ SRC	=	src/draw.cpp \
 		src/create_window.cpp \
 		src/update.cpp \
 		src/person.cpp \
+		src/interetPoint.cpp \
+		src/housePoint.cpp \
 
 NAME	=	simulation
 

@@ -24,7 +24,7 @@ class Person {
         Vector2f objectif;
 
         void setNewObj();
-        void update_pers(float deltaTime, Person** lst);
+        void update_pers(float deltaTime, std::vector<Person *> lst);
 
     private:
         Clock timeInfection;
@@ -33,5 +33,5 @@ class Person {
         float get_dist(Vector2f a, Vector2f b);
         void check_disease_time();
         void set_color();
-        void check_infected(Person** lst);
+        void check_infected(std::vector<Person *> lst);
 };
