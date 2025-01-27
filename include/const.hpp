@@ -8,9 +8,10 @@
     const int RADIUS_INFECTION = 10;
 
     const int HOUSE_SIZE = 20;
-    const int NB_HOUSE = 40;
+    const int NB_HOUSE = 20;
+    const int NB_WORKS = 10;
 
-    const int NUMBER_PERSON = 100;
+    const int NUMBER_PERSON = 200;
     const int SPEED_MIN = 30;
     const int SPEED_MAX = 50;
 

@@ -9,6 +9,7 @@ class interetPoint
         enum TypePoint {
             NORMAL,
             HOUSE,
+            WORK,
         };
     protected:
         sf::Vector2f _pos;

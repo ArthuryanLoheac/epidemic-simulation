@@ -1,6 +1,11 @@
 #include "person.hpp"
 #include <housePoint.hpp>
 
+Person::Person() {
+    isGoingWorking = true;
+    isBackHome = false;
+}
+
 void Person::setNewObj() {
     objectif = Vector2f(rand() % (WIN_WIDTH-RADIUS_CIRCLE) + RADIUS_CIRCLE/2,
                         rand() % (WIN_HEIGHT-RADIUS_CIRCLE) + RADIUS_CIRCLE/2);
@@ -15,13 +20,42 @@ void Person::setNewObj(std::vector<interetPoint *> &lstInteretPoints)
     direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
 }
 
+void Person::setListType(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type)
+{
+    for (int i = 0; i < lstSrc.size(); i++) {
+        if (lstSrc[i]->getType() == type) {
+            lstDest.push_back(((housePoint *)(lstSrc[i])));
+        }
+    }
+}
+
+void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
+{
+    std::vector<interetPoint *> lstHouses;
+    setListType(lstInteretPoints, lstHouses, interetPoint::HOUSE);
+    std::vector<interetPoint *> lstWork;
+    setListType(lstInteretPoints, lstWork, interetPoint::WORK);
+
+
+    if (isGoingWorking) {
+        setNewObj(lstHouses);
+        isGoingWorking = false;
+    } else {
+        setNewObj(lstWork);
+        isBackHome = true;
+        isGoingWorking = true;
+    }
+}
+
 void Person::update_pers(float deltaTime, std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints)
 {
     check_disease_time();
-    pos += (direction * deltaTime * speed);
+    if (isBackHome == false)
+        pos += (direction * deltaTime * speed);
     circle->setPosition(pos);
-    if (get_dist(pos, objectif) <= 10.f)
-        setNewObj(lstInteretPoints);
+    if (get_dist(pos, objectif) <= 5.f) {
+        arrivedAtObjectif(lstInteretPoints);
+    }
     check_infected(lst);
     set_color();
 }
