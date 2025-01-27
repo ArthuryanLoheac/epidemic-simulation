@@ -23,7 +23,7 @@ class Person {
         PersonDisease state = NOT_SICK;
         Vector2f pos;
         Vector2f objectif;
-        bool isGoingWorking;
+        int isGoingWorking;
         bool isBackHome;
         interetPoint *_home;
 

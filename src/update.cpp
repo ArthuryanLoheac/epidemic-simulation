@@ -70,14 +70,13 @@ void newDay(std::vector<Person *> &heros, std::vector<interetPoint *> &lstIntere
 
     for (int i = 0; i < heros.size(); i++) {
         heros[i]->isBackHome = false;
-        heros[i]->isGoingWorking = true;
+        heros[i]->isGoingWorking = (rand() % NB_PLACE_VISIT_A_DAY) + 1;
         heros[i]->setNewObj(lstWork);
     }
 }
 
 void update(std::vector<Person *> &heros, window_game* game, std::vector<interetPoint *> &lstInteretPoints)
 {
-    //std::cout << isAllBack(heros) << endl;
     if (isAllBack(heros) == 0)
         newDay(heros, lstInteretPoints);
     game->deltaTime = game->clock->restart().asSeconds();

@@ -3,7 +3,7 @@
 
 
 Person::Person() {
-    isGoingWorking = true;
+    isGoingWorking = (rand() % NB_PLACE_VISIT_A_DAY) + 1;
     isBackHome = false;
     state = NOT_SICK;
 }
@@ -47,12 +47,14 @@ void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
     std::vector<interetPoint *> lstWork;
     setListType_pers(lstInteretPoints, lstWork, interetPoint::WORK);
 
-    if (isGoingWorking) {
+    isGoingWorking--;
+    if (isGoingWorking == 0) {
         setNewObj(_home);
-        isGoingWorking = false;
-    } else {
+    } else if (isGoingWorking == -1) {
         isBackHome = true;
         isGoingWorking = true;
+    } else {
+        setNewObj(lstWork);
     }
 }
 
