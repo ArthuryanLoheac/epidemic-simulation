@@ -20,5 +20,5 @@
     const int PERCENT_DEAD = 10;
     const int PERCENT_RECOVERED = 95;
 
-    const int NB_PLACE_VISIT_A_DAY = 3;
+    const int NB_PLACE_VISIT_A_DAY = 2;
 #endif

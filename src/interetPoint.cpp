@@ -9,6 +9,9 @@ interetPoint::interetPoint(size_t x, size_t y, size_t sizeX, size_t sizeY)
     _rect.setSize(_size);
     _rect.setPosition(_pos);
     _rect.setOrigin(_size.x / 2, _size.y / 2);
+    _rect.setFillColor(sf::Color::Transparent);
+    _rect.setOutlineColor(sf::Color::White);
+    _rect.setOutlineThickness(2);
     _type = NORMAL;
 }
 
