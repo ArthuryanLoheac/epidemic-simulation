@@ -3,9 +3,9 @@
 #define SIM_H
 
     #include <SFML/Graphics.hpp>
-    #include "person.h"
-    #include "const.h"
-    #include "color.h"
+    #include "person.hpp"
+    #include "const.hpp"
+    #include "color.hpp"
     #include <string>
 
     struct stats_game {

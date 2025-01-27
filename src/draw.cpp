@@ -1,4 +1,4 @@
-#include "sim.h"
+#include "sim.hpp"
 
 void draw_circles_dead(RenderWindow *window, Person** lst)
 {
