@@ -1,9 +1,11 @@
 #include "person.hpp"
 #include <housePoint.hpp>
 
+
 Person::Person() {
     isGoingWorking = true;
     isBackHome = false;
+    state = NOT_SICK;
 }
 
 void Person::setNewObj() {
@@ -31,7 +33,7 @@ void Person::setNewObj(interetPoint *point)
     direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
 }
 
-void Person::setListType(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type)
+void Person::setListType_pers(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type)
 {
     for (int i = 0; i < lstSrc.size(); i++) {
         if (lstSrc[i]->getType() == type) {
@@ -43,14 +45,12 @@ void Person::setListType(std::vector<interetPoint*> &lstSrc, std::vector<interet
 void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
 {
     std::vector<interetPoint *> lstWork;
-    setListType(lstInteretPoints, lstWork, interetPoint::WORK);
-
+    setListType_pers(lstInteretPoints, lstWork, interetPoint::WORK);
 
     if (isGoingWorking) {
         setNewObj(_home);
         isGoingWorking = false;
     } else {
-        setNewObj(lstWork);
         isBackHome = true;
         isGoingWorking = true;
     }
@@ -112,6 +112,5 @@ void Person::check_infected(std::vector<Person *> lst)
             state = SICK;
             timeInfection.restart();
         }
-        i++;
     }
 }

@@ -8,7 +8,6 @@ void draw_circles_dead(RenderWindow *window, std::vector<Person *> lst)
     {
         if (lst[i]->state == DEAD)
             window->draw(*(lst[i]->circle));
-        i++;
     }
 }
 
@@ -20,7 +19,6 @@ void draw_circles_other(RenderWindow *window, std::vector<Person *> lst)
     {
         if (lst[i]->state != DEAD)
             window->draw(*(lst[i]->circle));
-        i++;
     }
 }
 

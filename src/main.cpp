@@ -19,15 +19,6 @@ void createLstInteretPoints(std::vector<interetPoint *> &lst)
     }
 }
 
-void setListType(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type)
-{
-    for (int i = 0; i < lstSrc.size(); i++) {
-        if (lstSrc[i]->getType() == type) {
-            lstDest.push_back(((housePoint *)(lstSrc[i])));
-        }
-    }
-}
-
 void assignPerson(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints)
 {
     int id = 0;

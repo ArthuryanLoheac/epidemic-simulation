@@ -12,8 +12,8 @@
     const int NB_WORKS = 10;
 
     const int NUMBER_PERSON = 200;
-    const int SPEED_MIN = 30;
-    const int SPEED_MAX = 50;
+    const int SPEED_MIN = 80;
+    const int SPEED_MAX = 100;
 
     const int NUMBER_INFECTED_START = 10;
     const int TIME_SICK = 3;

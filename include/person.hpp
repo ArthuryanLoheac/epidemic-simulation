@@ -38,10 +38,10 @@ class Person {
         Clock timeInfection;
         Vector2f direction;
     
-        void setListType(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);
         float get_dist(Vector2f a, Vector2f b);
         void check_disease_time();
         void set_color();
         void check_infected(std::vector<Person *> lst);
         void arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints);
+        void setListType_pers(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);
 };

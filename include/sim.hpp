@@ -39,7 +39,8 @@
     void compute_event(Event event, RenderWindow *window, std::vector<Person *> &heros,
         std::vector<interetPoint *> &lst);
     window_game* create_window_game();
-    void update(std::vector<Person *> heros, window_game* game, std::vector<interetPoint *> &lstInteretPoints);
+    void update(std::vector<Person *> &heros, window_game* game, std::vector<interetPoint *> &lstInteretPoints);
     void create_lst_person(std::vector<Person *> &lst);
     void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints);
+    void setListType(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);
 #endif
