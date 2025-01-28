@@ -41,11 +41,12 @@ class Person {
         float timeWaiting;
         bool isWaiting;
         float timeWaited;
-    private:
         Clock clockWaiting;
+    private:
         Vector2f direction;
     
         float get_dist(Vector2f a, Vector2f b);
+        void computeDir();
         void check_infected(std::vector<Person *> lst);
         void arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints);
         void setListType_pers(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);

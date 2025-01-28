@@ -34,15 +34,13 @@ void Person::setHome(interetPoint *home)
 void Person::setNewObj(std::vector<interetPoint *> &lstInteretPoints)
 {
     interetPoint *point = lstInteretPoints[rand() % lstInteretPoints.size()];
-
-    objectif = point->getPos();
-    direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
+    setNewObj(point);
 }
 
 void Person::setNewObj(interetPoint *point)
 {
     objectif = point->getPos();
-    direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
+    computeDir();
 }
 
 void Person::setListType_pers(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type)
@@ -74,16 +72,24 @@ void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
     }
 }
 
+static void updateClockPerson(Person *hero, float speedGeneral)
+{
+    hero->timeWaited += hero->clockWaiting.getElapsedTime().asSeconds() * speedGeneral;
+    hero->clockWaiting.restart();
+    if (hero->timeWaited >= hero->timeWaiting && hero->isWaiting)
+        hero->isWaiting = false;
+}
+
 void Person::update_pers(float deltaTime, float speedGeneral
     , std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints)
 {
-    timeWaited += clockWaiting.getElapsedTime().asSeconds() * speedGeneral;
-    clockWaiting.restart();
-    if (timeWaited >= timeWaiting && isWaiting)
-        isWaiting = false;
+    updateClockPerson(this, speedGeneral);
     //If not home move
     if (isBackHome == false && !isWaiting)
         pos += (direction * deltaTime * speed);
+    if (pos.x < 0 || pos.y < 0 || pos.x > WIN_WIDTH || pos.y > WIN_HEIGHT)
+        computeDir();
+
     circle->setPosition(pos);
     if (get_dist(pos, objectif) <= 5.f && !isWaiting)
         arrivedAtObjectif(lstInteretPoints);
@@ -120,4 +126,9 @@ void Person::check_infected(std::vector<Person *> lst)
             && state == SICK && lst[i]->state == NOT_SICK)
             lst[i]->setSick();
     }
+}
+
+void Person::computeDir()
+{
+    direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
 }

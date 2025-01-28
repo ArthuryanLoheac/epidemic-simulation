@@ -2,6 +2,24 @@
 
 using namespace sf;
 
+static void compute_speed(Event event, window_game *game)
+{
+    float speedMax = 10;
+    float speedMin = 0;
+    float diffSpeed = 0.2f;
+
+    if (event.key.code == Keyboard::Right && event.type == sf::Event::KeyPressed) {
+        game->speed += diffSpeed;
+        if (game->speed > speedMax)
+            game->speed = speedMax;
+    }
+    if (event.key.code == Keyboard::Left && event.type == sf::Event::KeyPressed) {
+        game->speed -= diffSpeed;
+        if (game->speed < speedMin)
+            game->speed = speedMin;
+    }
+}
+
 void compute_event(Event event, window_game *game, std::vector<Person *> &heros,
     std::vector<interetPoint *> &lst)
 {
@@ -11,14 +29,5 @@ void compute_event(Event event, window_game *game, std::vector<Person *> &heros,
     if (event.key.code == Keyboard::R && event.type == sf::Event::KeyPressed) {
         init(heros, lst, *game);
     }
-    if (event.key.code == Keyboard::Right && event.type == sf::Event::KeyPressed) {
-        game->speed += 0.2f;
-        if (game->speed > 5)
-            game->speed = 5;
-    }
-    if (event.key.code == Keyboard::Left && event.type == sf::Event::KeyPressed) {
-        game->speed -= 0.2f;
-        if (game->speed < 0)
-            game->speed = 0;
-    }
+    compute_speed();
 }
