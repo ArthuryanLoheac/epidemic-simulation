@@ -2,11 +2,12 @@
 
 using namespace sf;
 
-void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints)
+void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game &game)
 {
     create_lst_person(heros);
     createLstInteretPoints(lstInteretPoints);
     assignPerson(heros, lstInteretPoints);
+    game.Days = 1;
 }
 
 int main()
@@ -14,7 +15,7 @@ int main()
     window_game* game = create_window_game();
     std::vector<Person *> heros;
     std::vector<interetPoint *> lstInteretPoints;
-    init(heros, lstInteretPoints);
+    init(heros, lstInteretPoints, *game);
 
     while (game->window->isOpen())
     {

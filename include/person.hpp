@@ -32,11 +32,17 @@ class Person {
         void setHome(interetPoint *home);
         void setNewObj(std::vector<interetPoint *> &lstInteretPoints);
         void setNewObj(interetPoint * point);
-        void update_pers(float deltaTime, std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints);
+        void update_pers(float deltaTime, float speedGeneral,
+            std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints);
         Person();
         void setSick();
+        float getRandomWait();
         void update_color();
+        float timeWaiting;
+        bool isWaiting;
+        float timeWaited;
     private:
+        Clock clockWaiting;
         Vector2f direction;
     
         float get_dist(Vector2f a, Vector2f b);

@@ -9,7 +9,7 @@ void update_all_person(std::vector<Person *> &heros, window_game* game,
     for (int i = 0; i < heros.size(); i++)
     {
         if (heros[i]->state != DEAD)
-            heros[i]->update_pers(game->deltaTime, heros, lstInteretPoints);
+            heros[i]->update_pers(game->deltaTime, game->speed, heros, lstInteretPoints);
         heros[i]->update_color();
     }
 }

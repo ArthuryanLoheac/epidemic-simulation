@@ -9,7 +9,7 @@ void compute_event(Event event, window_game *game, std::vector<Person *> &heros,
         (*game->window).close();
     }
     if (event.key.code == Keyboard::R && event.type == sf::Event::KeyPressed) {
-        init(heros, lst);
+        init(heros, lst, *game);
     }
     if (event.key.code == Keyboard::Right && event.type == sf::Event::KeyPressed) {
         game->speed += 0.2f;

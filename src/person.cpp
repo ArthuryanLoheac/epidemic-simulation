@@ -14,6 +14,12 @@ void Person::setSick()
     dayInfection = 3;
 }
 
+float Person::getRandomWait()
+{
+    isWaiting = true;
+    return (float)((rand() % (MAX_SECONDS_WORKING - MIN_SECONDS_WORKING)) + MIN_SECONDS_WORKING);
+}
+
 void Person::setNewObj() {
     objectif = Vector2f(rand() % (WIN_WIDTH-RADIUS_CIRCLE) + RADIUS_CIRCLE/2,
                         rand() % (WIN_HEIGHT-RADIUS_CIRCLE) + RADIUS_CIRCLE/2);
@@ -53,25 +59,34 @@ void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
     std::vector<interetPoint *> lstWork;
     setListType_pers(lstInteretPoints, lstWork, interetPoint::WORK);
 
+    timeWaited = 0;
     isGoingWorking--;
-    if (isGoingWorking == 0) {
+    if (isGoingWorking == 0) { // ARRIVED LAST INTERET POINT
         setNewObj(_home);
-    } else if (isGoingWorking == -1) {
+        timeWaiting = getRandomWait();
+    } else if (isGoingWorking == -1) { // ARRIVED HOME
         isBackHome = true;
         isGoingWorking = true;
-    } else {
+        timeWaiting = (rand() % 10)/10.f;
+    } else { // ARRIVED INTERET POINT
         setNewObj(lstWork);
+        timeWaiting = getRandomWait();
     }
 }
 
-void Person::update_pers(float deltaTime, std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints)
+void Person::update_pers(float deltaTime, float speedGeneral
+    , std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints)
 {
-    if (isBackHome == false)
+    timeWaited += clockWaiting.getElapsedTime().asSeconds() * speedGeneral;
+    clockWaiting.restart();
+    if (timeWaited >= timeWaiting && isWaiting)
+        isWaiting = false;
+    //If not home move
+    if (isBackHome == false && !isWaiting)
         pos += (direction * deltaTime * speed);
     circle->setPosition(pos);
-    if (get_dist(pos, objectif) <= 5.f) {
+    if (get_dist(pos, objectif) <= 5.f && !isWaiting)
         arrivedAtObjectif(lstInteretPoints);
-    }
     if (state == SICK)
         check_infected(lst);
 }

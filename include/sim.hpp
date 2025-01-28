@@ -47,7 +47,7 @@
     void update(std::vector<Person *> &heros, window_game* game,
         std::vector<interetPoint *> &lstInteretPoints);
     void create_lst_person(std::vector<Person *> &lst);
-    void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints);
+    void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game &game);
     void setListType(std::vector<interetPoint*> &lstSrc,
         std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);
     void createLstInteretPoints(std::vector<interetPoint *> &lst);

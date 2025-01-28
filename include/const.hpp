@@ -9,7 +9,10 @@
 
     const int HOUSE_SIZE = 10;
     const int NB_HOUSE = 50;
+
     const int NB_WORKS = 10;
+    const int MAX_SECONDS_WORKING = 2;
+    const int MIN_SECONDS_WORKING = 4;
 
     const int NUMBER_PERSON = 500;
     const int SPEED_MIN = 80;
