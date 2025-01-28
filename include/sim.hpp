@@ -39,12 +39,20 @@
         Text* txt_speed;
     };
 
-    void draw(window_game *game, std::vector<Person *> lst, std::vector<interetPoint *> lstPoints);
-    void compute_event(Event event, window_game *game, std::vector<Person *> &heros,
+    void draw(window_game *game, std::vector<Person *> lst,
+        std::vector<interetPoint *> lstPoints);
+    void compute_event(Event event, window_game *game,std::vector<Person *> &heros,
         std::vector<interetPoint *> &lst);
     window_game* create_window_game();
-    void update(std::vector<Person *> &heros, window_game* game, std::vector<interetPoint *> &lstInteretPoints);
+    void update(std::vector<Person *> &heros, window_game* game,
+        std::vector<interetPoint *> &lstInteretPoints);
     void create_lst_person(std::vector<Person *> &lst);
     void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints);
-    void setListType(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);
+    void setListType(std::vector<interetPoint*> &lstSrc,
+        std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);
+    void createLstInteretPoints(std::vector<interetPoint *> &lst);
+    void assignPerson(std::vector<Person *> &heros,
+        std::vector<interetPoint *> &lstInteretPoints);
+    void update_all_person(std::vector<Person *> &heros, window_game* game,
+        std::vector<interetPoint *> &lstInteretPoints);
 #endif

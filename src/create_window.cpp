@@ -3,46 +3,16 @@
 using namespace sf;
 using namespace std;
 
-CircleShape *create_circle(Vector2f pos)
+static RenderWindow* create_window()
 {
-    CircleShape *circle = new CircleShape();
-    circle->setRadius(RADIUS_CIRCLE);
-    circle->setOrigin(RADIUS_CIRCLE/2, RADIUS_CIRCLE/2);
-    circle->setFillColor(NOT_SICK_COLOR);
-    circle->setPosition(pos);
-    return circle;
-}
+    RenderWindow *window = new RenderWindow(
+        VideoMode(WIN_WIDTH, WIN_HEIGHT), "Simulation");
 
-Person *create_person(int id, float x = 0.f, float y = 0.f)
-{
-    Person *pers = new Person();
-    pers->pos = Vector2f(x,y);
-    pers->id = id;
-    pers->circle = create_circle(pers->pos);
-    pers->speed = (rand() % (SPEED_MAX - SPEED_MIN)) + SPEED_MIN;
-    pers->setNewObj();
-    return pers;
-}
-
-void create_lst_person(vector<Person *> &lst)
-{
-    lst.clear();
-    for (int i = 0; i < NUMBER_PERSON; i++) {
-        lst.push_back(create_person(i, 0, 0));
-    }
-    for (int i = 0; i < min(NUMBER_INFECTED_START, NUMBER_PERSON); i++) {
-        lst[i]->state = SICK; 
-    }
-}
-
-RenderWindow* create_window()
-{
-    RenderWindow *window = new RenderWindow(VideoMode(WIN_WIDTH, WIN_HEIGHT), "Simulation");
     window->setVerticalSyncEnabled(true);
     return window;
 }
 
-Text* create_text(String txt, Font* fnt, int i, Color c)
+static Text* create_text(String txt, Font* fnt, int i, Color c)
 {
     Text* text = new Text();
 
@@ -55,7 +25,7 @@ Text* create_text(String txt, Font* fnt, int i, Color c)
     return text;
 }
 
-stats_game* create_stats(Font* fnt)
+static stats_game* create_stats(Font* fnt)
 {
     stats_game *stats = new stats_game();
 
@@ -78,6 +48,7 @@ window_game* create_window_game()
 {
     srand((unsigned)time(0));
     window_game *game = new window_game();
+
     game->window = create_window();
     game->clock = new Clock();
     game->font = new Font();

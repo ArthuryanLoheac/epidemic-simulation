@@ -25,6 +25,9 @@ SRC	=	src/draw.cpp \
 		src/interetPoint.cpp \
 		src/housePoint.cpp \
 		src/workPoint.cpp \
+		src/create_persons.cpp \
+		src/create_InteretPoints.cpp \
+		src/update_all_person.cpp \
 
 NAME	=	simulation
 

@@ -3,7 +3,8 @@
 using namespace sf;
 using namespace std;
 
-void setListType(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type)
+void setListType(std::vector<interetPoint*> &lstSrc,
+    std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type)
 {
     for (int i = 0; i < lstSrc.size(); i++) {
         if (lstSrc[i]->getType() == type) {
@@ -12,17 +13,7 @@ void setListType(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> 
     }
 }
 
-void update_all_person(std::vector<Person *> &heros, window_game* game, std::vector<interetPoint *> &lstInteretPoints)
-{
-    int i = 0;
-    for (int i = 0; i < heros.size(); i++)
-    {
-        if (heros[i]->state != DEAD)
-            heros[i]->update_pers(game->deltaTime, heros, lstInteretPoints);
-    }
-}
-
-int get_total_state(std::vector<Person *> heros, PersonDisease state)
+static int get_total_state(std::vector<Person *> heros, PersonDisease state)
 {
     int nb = 0;
     int i = 0;
@@ -35,7 +26,7 @@ int get_total_state(std::vector<Person *> heros, PersonDisease state)
     return nb;
 }
 
-void update_stats(stats_game* stats, std::vector<Person *> &heros)
+static void update_stats(stats_game* stats, std::vector<Person *> &heros)
 {
     stats->nb_imune = get_total_state(heros, IMUNE);
     stats->txt_imune->setString("Imunes : " + to_string(stats->nb_imune));
@@ -51,7 +42,7 @@ void update_stats(stats_game* stats, std::vector<Person *> &heros)
     stats->txt_alives->setString("Alives : " + to_string(stats->nb_alives));
 }
 
-int isAllBack(std::vector<Person *> heros)
+static int isAllBack(std::vector<Person *> heros)
 {
     int len = 0;
 
@@ -64,7 +55,8 @@ int isAllBack(std::vector<Person *> heros)
     return len;
 }
 
-void newDay(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game* game)
+static void newDay(std::vector<Person *> &heros,
+    std::vector<interetPoint *> &lstInteretPoints, window_game* game)
 {
     std::vector<interetPoint *> lstWork;
     setListType(lstInteretPoints, lstWork, interetPoint::WORK);
