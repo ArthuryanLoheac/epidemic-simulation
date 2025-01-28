@@ -11,9 +11,20 @@ housePoint::~housePoint()
 {
 }
 
-void housePoint::addHabitant(Person *person)
+
+void housePoint::addPerson(Person *pers)
 {
-    _habitants.push_back(person);
+    lst.push_back(pers);
+}
+
+void housePoint::removePerson(Person *pers)
+{
+    for (int i = 0; i < lst.size(); i++) {
+        if (lst[i] == pers) {
+            lst.erase(lst.begin() + i);
+            return;
+        }
+    }
 }
 
 void housePoint::update(void)

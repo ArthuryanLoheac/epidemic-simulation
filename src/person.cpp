@@ -1,5 +1,6 @@
 #include "person.hpp"
-#include <housePoint.hpp>
+#include "housePoint.hpp"
+#include "workPoint.hpp"
 
 
 Person::Person() {
@@ -20,15 +21,13 @@ float Person::getRandomWait()
     return (float)((rand() % (MAX_SECONDS_WORKING - MIN_SECONDS_WORKING)) + MIN_SECONDS_WORKING);
 }
 
-void Person::setNewObj() {
-    objectif = Vector2f(rand() % (WIN_WIDTH-RADIUS_CIRCLE) + RADIUS_CIRCLE/2,
-                        rand() % (WIN_HEIGHT-RADIUS_CIRCLE) + RADIUS_CIRCLE/2);
-    direction = Vector2f((objectif.x - pos.x), (objectif.y - pos.y)) / get_dist(pos, objectif);
-}
-
 void Person::setHome(interetPoint *home)
 {
     _home = home;
+}
+
+void Person::setNewObj()
+{
 }
 
 void Person::setNewObj(std::vector<interetPoint *> &lstInteretPoints)
@@ -40,6 +39,7 @@ void Person::setNewObj(std::vector<interetPoint *> &lstInteretPoints)
 void Person::setNewObj(interetPoint *point)
 {
     objectif = point->getPos();
+    objPoint = point;
     computeDir();
 }
 
@@ -59,6 +59,10 @@ void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
 
     timeWaited = 0;
     isGoingWorking--;
+    if (dynamic_cast<housePoint *>(objPoint))
+        ((housePoint *)(objPoint))->addPerson(this);
+    if (dynamic_cast<workPoint *>(objPoint))
+        ((workPoint *)(objPoint))->addPerson(this);
     if (isGoingWorking == 0) { // ARRIVED LAST INTERET POINT
         setNewObj(_home);
         timeWaiting = getRandomWait();
@@ -72,18 +76,23 @@ void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
     }
 }
 
-static void updateClockPerson(Person *hero, float speedGeneral)
+void Person::updateClockPerson(float speedGeneral)
 {
-    hero->timeWaited += hero->clockWaiting.getElapsedTime().asSeconds() * speedGeneral;
-    hero->clockWaiting.restart();
-    if (hero->timeWaited >= hero->timeWaiting && hero->isWaiting)
-        hero->isWaiting = false;
+    timeWaited += clockWaiting.getElapsedTime().asSeconds() * speedGeneral;
+    clockWaiting.restart();
+    if (timeWaited >= timeWaiting && isWaiting) { // LEAVE POINT
+        isWaiting = false;
+        if (dynamic_cast<housePoint *>(objPoint))
+            ((housePoint *)(objPoint))->removePerson(this);
+        if (dynamic_cast<workPoint *>(objPoint))
+            ((workPoint *)(objPoint))->removePerson(this);
+    }
 }
 
 void Person::update_pers(float deltaTime, float speedGeneral
     , std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints)
 {
-    updateClockPerson(this, speedGeneral);
+    updateClockPerson(speedGeneral);
     //If not home move
     if (isBackHome == false && !isWaiting)
         pos += (direction * deltaTime * speed);
@@ -93,8 +102,6 @@ void Person::update_pers(float deltaTime, float speedGeneral
     circle->setPosition(pos);
     if (get_dist(pos, objectif) <= 5.f && !isWaiting)
         arrivedAtObjectif(lstInteretPoints);
-    if (state == SICK)
-        check_infected(lst);
 }
 
 float Person::get_dist(Vector2f a, Vector2f b)
@@ -114,17 +121,6 @@ void Person::update_color()
         circle->setFillColor(DEAD_COLOR);
     } else if (state == RECOVERED) {
         circle->setFillColor(RECOVERED_COLOR);
-    }
-}
-
-void Person::check_infected(std::vector<Person *> lst)
-{
-    int i = 0;
-
-    for (int i = 0; i < lst.size(); i++) {
-        if (i != id && get_dist(pos, lst[i]->pos) < RADIUS_INFECTION
-            && state == SICK && lst[i]->state == NOT_SICK)
-            lst[i]->setSick();
     }
 }
 

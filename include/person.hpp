@@ -26,12 +26,13 @@ class Person {
         int isGoingWorking;
         bool isBackHome;
         interetPoint *_home;
+        interetPoint *objPoint;
         int dayInfection;
 
-        void setNewObj();
         void setHome(interetPoint *home);
         void setNewObj(std::vector<interetPoint *> &lstInteretPoints);
         void setNewObj(interetPoint * point);
+        void setNewObj();
         void update_pers(float deltaTime, float speedGeneral,
             std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints);
         Person();
@@ -47,7 +48,7 @@ class Person {
     
         float get_dist(Vector2f a, Vector2f b);
         void computeDir();
-        void check_infected(std::vector<Person *> lst);
+        void updateClockPerson(float speedGeneral);
         void arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints);
         void setListType_pers(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);
 };

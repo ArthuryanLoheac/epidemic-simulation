@@ -15,3 +15,18 @@ void workPoint::update(void)
 {
 
 }
+
+void workPoint::addPerson(Person *pers)
+{
+    lst.push_back(pers);
+}
+
+void workPoint::removePerson(Person *pers)
+{
+    for (int i = 0; i < lst.size(); i++) {
+        if (lst[i] == pers) {
+            lst.erase(lst.begin() + i);
+            return;
+        }
+    }
+}

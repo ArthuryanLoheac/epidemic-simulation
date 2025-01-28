@@ -10,4 +10,7 @@ class workPoint : public interetPoint
         workPoint(size_t x, size_t y, size_t sizeX, size_t sizeY);
         ~workPoint();
         void update(void) override;
+        std::vector<Person *> lst;
+        void addPerson(Person *pers);
+        void removePerson(Person *pers);
 };

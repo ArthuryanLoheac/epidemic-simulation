@@ -4,11 +4,11 @@
 
 class housePoint : public interetPoint
 {
-    private:
-        std::vector<Person *> _habitants;
     public:
         housePoint(size_t x, size_t y, size_t sizeX, size_t sizeY);
+        std::vector<Person *> lst;
         ~housePoint();
-        void addHabitant(Person *person);
         void update(void) override;
+        void addPerson(Person *pers);
+        void removePerson(Person *pers);
 };
