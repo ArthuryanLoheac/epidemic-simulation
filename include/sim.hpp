@@ -55,4 +55,6 @@
         std::vector<interetPoint *> &lstInteretPoints);
     void update_all_person(std::vector<Person *> &heros, window_game* game,
         std::vector<interetPoint *> &lstInteretPoints);
+    void newDay(std::vector<Person *> &heros,
+        std::vector<interetPoint *> &lstInteretPoints, window_game* game);
 #endif

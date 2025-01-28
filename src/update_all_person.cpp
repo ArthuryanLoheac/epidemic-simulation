@@ -10,5 +10,6 @@ void update_all_person(std::vector<Person *> &heros, window_game* game,
     {
         if (heros[i]->state != DEAD)
             heros[i]->update_pers(game->deltaTime, heros, lstInteretPoints);
+        heros[i]->update_color();
     }
 }

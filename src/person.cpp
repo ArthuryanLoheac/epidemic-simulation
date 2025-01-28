@@ -8,6 +8,12 @@ Person::Person() {
     state = NOT_SICK;
 }
 
+void Person::setSick()
+{
+    state = SICK;
+    dayInfection = 3;
+}
+
 void Person::setNewObj() {
     objectif = Vector2f(rand() % (WIN_WIDTH-RADIUS_CIRCLE) + RADIUS_CIRCLE/2,
                         rand() % (WIN_HEIGHT-RADIUS_CIRCLE) + RADIUS_CIRCLE/2);
@@ -60,15 +66,14 @@ void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
 
 void Person::update_pers(float deltaTime, std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints)
 {
-    check_disease_time();
     if (isBackHome == false)
         pos += (direction * deltaTime * speed);
     circle->setPosition(pos);
     if (get_dist(pos, objectif) <= 5.f) {
         arrivedAtObjectif(lstInteretPoints);
     }
-    check_infected(lst);
-    set_color();
+    if (state == SICK)
+        check_infected(lst);
 }
 
 float Person::get_dist(Vector2f a, Vector2f b)
@@ -76,19 +81,7 @@ float Person::get_dist(Vector2f a, Vector2f b)
     return sqrt(pow((a.x - b.x), 2) + pow((b.y - a.y), 2));
 }
 
-void Person::check_disease_time()
-{
-    if (state == SICK && timeInfection.getElapsedTime() >= seconds(TIME_SICK)) {
-        int id = rand() % (PERCENT_DEAD + PERCENT_RECOVERED);
-        if (id < PERCENT_DEAD) {
-            state = DEAD;
-        } else if (id < PERCENT_RECOVERED) {
-            state = RECOVERED;
-        }
-    }
-}
-
-void Person::set_color()
+void Person::update_color()
 {
     if (state == NOT_SICK) {
         circle->setFillColor(NOT_SICK_COLOR);
@@ -109,10 +102,7 @@ void Person::check_infected(std::vector<Person *> lst)
 
     for (int i = 0; i < lst.size(); i++) {
         if (i != id && get_dist(pos, lst[i]->pos) < RADIUS_INFECTION
-            && lst[i]->state == SICK && state == NOT_SICK)
-        {
-            state = SICK;
-            timeInfection.restart();
-        }
+            && state == SICK && lst[i]->state == NOT_SICK)
+            lst[i]->setSick();
     }
 }

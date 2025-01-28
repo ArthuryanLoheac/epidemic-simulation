@@ -30,7 +30,6 @@ void create_lst_person(vector<Person *> &lst)
     for (int i = 0; i < NUMBER_PERSON; i++) {
         lst.push_back(create_person(i, 0, 0));
     }
-    for (int i = 0; i < min(NUMBER_INFECTED_START, NUMBER_PERSON); i++) {
-        lst[i]->state = SICK; 
-    }
+    for (int i = 0; i < min(NUMBER_INFECTED_START, NUMBER_PERSON); i++)
+        lst[i]->setSick();
 }

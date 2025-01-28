@@ -14,7 +14,6 @@ NC=\033[0m
 .SILENT:
 .PHONY: clean fclean
 
-
 SRC_MAIN	=	src/main.cpp \
 
 SRC	=	src/draw.cpp \
@@ -28,6 +27,7 @@ SRC	=	src/draw.cpp \
 		src/create_persons.cpp \
 		src/create_InteretPoints.cpp \
 		src/update_all_person.cpp \
+		src/newDay.cpp \
 
 NAME	=	simulation
 
