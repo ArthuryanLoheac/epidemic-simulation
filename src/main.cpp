@@ -10,6 +10,27 @@ void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretP
     game.Days = 1;
 }
 
+void deleteAll(window_game* game, std::vector<Person *> heros, std::vector<interetPoint *> lstInteretPoints)
+{
+    delete game->window;
+    delete game->clock;
+    delete game->stats->txt_alives;
+    delete game->stats->txt_death;
+    delete game->stats->txt_imune;
+    delete game->stats->txt_not_sick;
+    delete game->stats->txt_recovered;
+    delete game->stats->txt_sick;
+    delete game->stats;
+    delete game->font;
+    delete game->txt_days;
+    delete game->txt_speed;
+    delete game;
+    for (int i = 0; i < NUMBER_PERSON; i++)
+        delete heros[i];
+    for (int i = 0; i < NB_HOUSE + NB_WORKS; i++)
+        delete lstInteretPoints[i];
+}
+
 int main()
 {
     window_game* game = create_window_game();
@@ -26,6 +47,6 @@ int main()
         update(heros, game, lstInteretPoints);
         draw(game, heros, lstInteretPoints);
     }
-    delete game;
+    deleteAll(game, heros, lstInteretPoints);
     return 0;
 }

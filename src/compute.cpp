@@ -29,5 +29,5 @@ void compute_event(Event event, window_game *game, std::vector<Person *> &heros,
     if (event.key.code == Keyboard::R && event.type == sf::Event::KeyPressed) {
         init(heros, lst, *game);
     }
-    compute_speed();
+    compute_speed(event, game);
 }
