@@ -27,7 +27,7 @@ void deleteAll(window_game* game, std::vector<Person *> heros, std::vector<inter
     delete game;
     for (int i = 0; i < NUMBER_PERSON; i++)
         delete heros[i];
-    for (int i = 0; i < NB_HOUSE + NB_WORKS; i++)
+    for (int i = 0; i < NB_HOUSE + NB_WORK_POINT; i++)
         delete lstInteretPoints[i];
 }
 

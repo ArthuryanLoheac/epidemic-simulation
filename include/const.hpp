@@ -9,9 +9,10 @@
     const int NB_HOUSE = 30;
     const int HOUSE_SIZE = 10;
 
-    const int NB_WORKS = 20;
-    const int MAX_SECONDS_WORKING = 2;
+    const int NB_WORK_POINT = 20;
     const int MIN_SECONDS_WORKING = 4;
+    const int MAX_SECONDS_WORKING = 2;
+    const int NB_PLACE_VISIT_A_DAY = 2;
 
     const int NUMBER_PERSON = 200;
     const int SPEED_MIN = 80;
@@ -21,8 +22,8 @@
     const int TIME_SICK = 3;
     const int PERCENT_DEAD = 10;
     const int PERCENT_RECOVERED = 95;
+
     const int PERCENT_TRANSMISSION_WORK = 5;
     const int PERCENT_TRANSMISSION_HOME = 10;
 
-    const int NB_PLACE_VISIT_A_DAY = 2;
 #endif

@@ -1,28 +1,38 @@
-# epidemic-simulation
-An epidemic simulation project
-Use the key R to restart a simulation
+# Epidemic Simulation
+An epidemic simulation project 
+### Commands 
+- Use the key R to restart a simulation
+- Use the arrows to increase or reduce simulation speed
 
+### Compiling
 In a terminal use the command "make run" or "make" and "./simulation" to start the simulation
 
-- **WIN_WIDTH** (default :1080)    
-Window width
-- **WIN_HEIGHT** (default :720)  
-Window height
-- **RADIUS_CIRCLE** (default :10)  
-Defines the radius of circles representing people
-- **RADIUS_INFECTION** (default :20)  
-Distance between 2 people to be inferred
-- **NUMBER_std::vector<Person *> (default :200)  
-Number of people
-- **SPEED_MIN** (default :30)  
-Minimum movement speed of characters
-- **SPEED_MAX** (default :50)  
-Maximum movement speed of characters
-- **NUMBER_INFECTED_START** (default :2)  
-Number of infécté at start
-- **TIME_SICK** (default :3)  
-Time in seconds of the ill
-- **PERCENT_DEAD** (default :10)  
-Percent of chance of dying after TIME_SICK
-- **PERCENT_RECOVERED** (default :90)  
-Percent of chance of recover after TIME_SICK
+### Datas
+- **WIN_WIDTH / WIN_HEIGHT**  
+Window width / height in pixels
+- **RADIUS_CIRCLE**  
+Radius of each human
+- **NB_HOUSE**  
+Number of houses in the simulation
+- **NB_WORK_POINT**  
+Number of interet point in the simulation
+- **MIN_SECONDS_WORKING / MAX_SECONDS_WORKING**  
+minimum / maximum stopping time at points of interest
+- **NB_PLACE_VISIT_A_DAY**  
+Number of houses in the simulation
+- **NUMBER_PERSON**  
+Number of humans in the simulation
+- **SPEED_MIN / SPEED_MAX**  
+Speed min / max of each human
+- **NUMBER_INFECTED_START**  
+Number of sick humans at the start of the simulation
+- **TIME_SICK**  
+Duration of the the disease (in days)
+- **PERCENT_DEAD**  
+Percentage of deaths at the end of the disease (%)
+- **PERCENT_RECOVERED**  
+Percentage of recovered at the end of the disease (%)
+- **PERCENT_TRANSMISSION_WORK**  
+Percentage chance of transmitting disease in a point of interest (per second) 
+- **PERCENT_TRANSMISSION_HOME**  
+Percentage chance of transmitting disease in a house point (per second) 
