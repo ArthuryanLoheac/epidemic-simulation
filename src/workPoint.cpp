@@ -11,17 +11,32 @@ workPoint::~workPoint()
 {
 }
 
-void workPoint::update(void)
+static void checkMakeSick(std::vector<Person *> lst)
 {
-
+    for (Person *&j : lst) {
+        if (j->state == NOT_SICK && ((rand() % 100) < PERCENT_TRANSMISSION_WORK)) {
+            j->state = SICK;
+        }
+    }
 }
 
-void workPoint::addPerson(Person *pers)
+void workPoint::update(float speed)
+{
+    if (clock.getElapsedTime().asSeconds() >= (1.f / speed)) {
+        for (Person *&i : lst) {
+            if (i->state == SICK)
+                checkMakeSick(lst);
+        }
+        clock.restart();
+    }
+}
+
+void workPoint::addPersonWork(Person *pers)
 {
     lst.push_back(pers);
 }
 
-void workPoint::removePerson(Person *pers)
+void workPoint::removePersonWork(Person *pers)
 {
     for (int i = 0; i < lst.size(); i++) {
         if (lst[i] == pers) {

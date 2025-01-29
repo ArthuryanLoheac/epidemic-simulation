@@ -17,9 +17,8 @@ static void setHerosNewDatas(std::vector<interetPoint *> lstWork,
     std::vector<Person *> &heros)
 {
     for (int i = 0; i < heros.size(); i++) {
-        heros[i]->isBackHome = false;
-        heros[i]->isGoingWorking = (rand() % NB_PLACE_VISIT_A_DAY) + 1;
         heros[i]->setNewObj(lstWork);
+        heros[i]->setNewDay();
         if (heros[i]->state == SICK)
             updateHerosSick(heros[i]);
     }

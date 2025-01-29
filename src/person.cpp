@@ -3,9 +3,9 @@
 #include "workPoint.hpp"
 
 
-Person::Person() {
-    isGoingWorking = (rand() % NB_PLACE_VISIT_A_DAY) + 1;
-    isBackHome = false;
+Person::Person()
+{
+    setNewDay();
     state = NOT_SICK;
 }
 
@@ -15,10 +15,12 @@ void Person::setSick()
     dayInfection = 3;
 }
 
-float Person::getRandomWait()
+void Person::setNewDay()
 {
-    isWaiting = true;
-    return (float)((rand() % (MAX_SECONDS_WORKING - MIN_SECONDS_WORKING)) + MIN_SECONDS_WORKING);
+    nbVisitsRemaining = ((rand() % NB_PLACE_VISIT_A_DAY) + 1);
+    moveStatus = WAITING_AT_HOME;
+    timeWaiting = rand() % 3;
+    clock.restart();
 }
 
 void Person::setHome(interetPoint *home)
@@ -39,7 +41,6 @@ void Person::setNewObj(std::vector<interetPoint *> &lstInteretPoints)
 void Person::setNewObj(interetPoint *point)
 {
     objectif = point->getPos();
-    objPoint = point;
     computeDir();
 }
 
@@ -57,51 +58,65 @@ void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
     std::vector<interetPoint *> lstWork;
     setListType_pers(lstInteretPoints, lstWork, interetPoint::WORK);
 
-    timeWaited = 0;
-    isGoingWorking--;
-    if (dynamic_cast<housePoint *>(objPoint))
-        ((housePoint *)(objPoint))->addPerson(this);
-    if (dynamic_cast<workPoint *>(objPoint))
-        ((workPoint *)(objPoint))->addPerson(this);
-    if (isGoingWorking == 0) { // ARRIVED LAST INTERET POINT
+    nbVisitsRemaining--;
+    if (nbVisitsRemaining == -1)
+        moveStatus = ATHOME;
+    if (nbVisitsRemaining == 0) { // ARRIVED LAST INTERET POINT
         setNewObj(_home);
-        timeWaiting = getRandomWait();
-    } else if (isGoingWorking == -1) { // ARRIVED HOME
-        isBackHome = true;
-        isGoingWorking = true;
-        timeWaiting = (rand() % 10)/10.f;
-    } else { // ARRIVED INTERET POINT
+        moveStatus = WORKING;
+        timeWaiting = rand() % 3;
+        clock.restart();
+    }
+    if (nbVisitsRemaining > 0) { // ARRIVED INTERET POINT
         setNewObj(lstWork);
-        timeWaiting = getRandomWait();
+        moveStatus = WORKING;
+        timeWaiting = rand() % 3;
+        clock.restart();
     }
 }
 
-void Person::updateClockPerson(float speedGeneral)
+void Person::statusMoving(float deltaTime, std::vector<interetPoint *> &lstInteretPoints)
 {
-    timeWaited += clockWaiting.getElapsedTime().asSeconds() * speedGeneral;
-    clockWaiting.restart();
-    if (timeWaited >= timeWaiting && isWaiting) { // LEAVE POINT
-        isWaiting = false;
-        if (dynamic_cast<housePoint *>(objPoint))
-            ((housePoint *)(objPoint))->removePerson(this);
-        if (dynamic_cast<workPoint *>(objPoint))
-            ((workPoint *)(objPoint))->removePerson(this);
+    pos += (direction * deltaTime * speed);
+    if (get_dist(pos, objectif) <= 5.f)
+        arrivedAtObjectif(lstInteretPoints);
+}
+
+void Person::statusAtHome()
+{
+}
+
+void Person::statusWaitingAtHome(float speed)
+{
+    if (clock.getElapsedTime().asSeconds() >= (timeWaiting / speed)) {
+        moveStatus = MOVING;
     }
 }
+
+void Person::statusWorking(float speed)
+{
+    if (clock.getElapsedTime().asSeconds() >= (timeWaiting / speed)) {
+        moveStatus = MOVING;
+    }
+}
+
 
 void Person::update_pers(float deltaTime, float speedGeneral
     , std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints)
 {
-    updateClockPerson(speedGeneral);
     //If not home move
-    if (isBackHome == false && !isWaiting)
-        pos += (direction * deltaTime * speed);
+    if (moveStatus == MOVING)
+        statusMoving(deltaTime, lstInteretPoints);
+    if (moveStatus == ATHOME)
+        statusAtHome();
+    if (moveStatus == WORKING)
+        statusWorking(speedGeneral);
+    if (moveStatus == WAITING_AT_HOME)
+        statusWaitingAtHome(speedGeneral);
+
     if (pos.x < 0 || pos.y < 0 || pos.x > WIN_WIDTH || pos.y > WIN_HEIGHT)
         computeDir();
-
     circle->setPosition(pos);
-    if (get_dist(pos, objectif) <= 5.f && !isWaiting)
-        arrivedAtObjectif(lstInteretPoints);
 }
 
 float Person::get_dist(Vector2f a, Vector2f b)

@@ -18,8 +18,7 @@ static int get_total_state(std::vector<Person *> heros, PersonDisease state)
     int nb = 0;
     int i = 0;
 
-    for (int i = 0; i < heros.size(); i++)
-    {
+    for (int i = 0; i < heros.size(); i++) {
         if (heros[i]->state == state)
             nb++;
     }
@@ -49,10 +48,20 @@ static int isAllBack(std::vector<Person *> heros)
     for (int i = 0; i < heros.size(); i++) {
         if (heros[i]->state == DEAD)
             continue;
-        if (heros[i]->isBackHome == false)
+        if (heros[i]->moveStatus != ATHOME)
             len++;
     }
     return len;
+}
+
+void updateAllInteretPoint(std::vector<interetPoint *> &lstInteretPoints, window_game* game)
+{
+    for (interetPoint *&i : lstInteretPoints) {
+        if (dynamic_cast<housePoint *>(i))
+            ((housePoint *)(i))->update(game->speed);
+        if (dynamic_cast<workPoint *>(i))
+            ((workPoint *)(i))->update(game->speed);
+    }
 }
 
 
@@ -61,8 +70,11 @@ void update(std::vector<Person *> &heros, window_game* game, std::vector<interet
     if (isAllBack(heros) == 0)
         newDay(heros, lstInteretPoints, game);
     game->deltaTime = game->clock->restart().asSeconds() * game->speed;
+
     update_all_person(heros, game, lstInteretPoints);
     update_stats(game->stats, heros);
+    updateAllInteretPoint(lstInteretPoints, game);
+
     game->txt_days->setString("Days : " + to_string(game->Days));
     game->txt_speed->setString("Speed : x" + std::format("{:.1f}", game->speed));
 }

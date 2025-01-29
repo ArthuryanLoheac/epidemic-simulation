@@ -15,19 +15,29 @@ enum PersonDisease {
     DEAD
 };
 
+enum PersonMovingStatus {
+    WORKING,
+    MOVING,
+    ATHOME,
+    WAITING_AT_HOME,
+};
+
 class Person {
     public:
+        PersonDisease state = NOT_SICK;
         CircleShape *circle;
         float speed;
         int id;
-        PersonDisease state = NOT_SICK;
         Vector2f pos;
         Vector2f objectif;
-        int isGoingWorking;
-        bool isBackHome;
-        interetPoint *_home;
-        interetPoint *objPoint;
         int dayInfection;
+
+        interetPoint *_home;
+        PersonMovingStatus moveStatus;
+        int nbVisitsRemaining;
+        interetPoint *_obj;
+        sf::Clock clock;
+        float timeWaiting;
 
         void setHome(interetPoint *home);
         void setNewObj(std::vector<interetPoint *> &lstInteretPoints);
@@ -37,18 +47,18 @@ class Person {
             std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints);
         Person();
         void setSick();
-        float getRandomWait();
+        void setNewDay();
         void update_color();
-        float timeWaiting;
-        bool isWaiting;
-        float timeWaited;
-        Clock clockWaiting;
     private:
         Vector2f direction;
     
+        void statusMoving(float deltaTime, std::vector<interetPoint *> &lstInteretPoints);
+        void statusAtHome();
+        void statusWaitingAtHome(float speed);
+        void statusWorking(float speed);
+
         float get_dist(Vector2f a, Vector2f b);
         void computeDir();
-        void updateClockPerson(float speedGeneral);
         void arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints);
         void setListType_pers(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);
 };

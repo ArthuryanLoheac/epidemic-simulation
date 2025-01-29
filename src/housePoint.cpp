@@ -12,12 +12,12 @@ housePoint::~housePoint()
 }
 
 
-void housePoint::addPerson(Person *pers)
+void housePoint::addPersonHouse(Person *pers)
 {
     lst.push_back(pers);
 }
 
-void housePoint::removePerson(Person *pers)
+void housePoint::removePersonHouse(Person *pers)
 {
     for (int i = 0; i < lst.size(); i++) {
         if (lst[i] == pers) {
@@ -26,8 +26,22 @@ void housePoint::removePerson(Person *pers)
         }
     }
 }
-
-void housePoint::update(void)
+static void checkMakeSick(std::vector<Person *> lst)
 {
-    
+    for (Person *&j : lst) {
+        if (j->state == NOT_SICK && (rand() % 100 < PERCENT_TRANSMISSION_HOME)) {
+            j->state = SICK;
+        }
+    }
+}
+
+void housePoint::update(float speed)
+{
+    if (clock.getElapsedTime().asSeconds() >= (1.f / speed)) {
+        for (Person *&i : lst) {
+            if (i->state == SICK)
+                checkMakeSick(lst);
+        }
+        clock.restart();
+    }
 }

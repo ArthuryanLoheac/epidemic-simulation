@@ -21,8 +21,6 @@ static Person *create_person(int id, float x = 0.f, float y = 0.f)
     pers->circle = create_circle(pers->pos);
     pers->speed = (rand() % (SPEED_MAX - SPEED_MIN)) + SPEED_MIN;
     pers->setNewObj();
-    pers->timeWaiting = (rand() % 10)/10.f;
-    pers->isWaiting = true;
     return pers;
 }
 
