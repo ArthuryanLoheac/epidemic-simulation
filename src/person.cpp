@@ -35,6 +35,7 @@ void Person::setNewObj()
 void Person::setNewObj(std::vector<interetPoint *> &lstInteretPoints)
 {
     interetPoint *point = lstInteretPoints[rand() % lstInteretPoints.size()];
+    _obj = point;
     setNewObj(point);
 }
 
@@ -59,16 +60,20 @@ void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
     setListType_pers(lstInteretPoints, lstWork, interetPoint::WORK);
 
     nbVisitsRemaining--;
-    if (nbVisitsRemaining == -1)
+    if (nbVisitsRemaining == -1) {// ARRIVE AT HOME
         moveStatus = ATHOME;
+        ((housePoint *)(_home))->addPersonHouse(this);
+    }
     if (nbVisitsRemaining == 0) { // ARRIVED LAST INTERET POINT
         setNewObj(_home);
+        ((workPoint *)(_obj))->addPersonWork(this);
         moveStatus = WORKING;
         timeWaiting = rand() % 3;
         clock.restart();
     }
     if (nbVisitsRemaining > 0) { // ARRIVED INTERET POINT
         setNewObj(lstWork);
+        ((workPoint *)(_obj))->addPersonWork(this);
         moveStatus = WORKING;
         timeWaiting = rand() % 3;
         clock.restart();
@@ -90,6 +95,7 @@ void Person::statusWaitingAtHome(float speed)
 {
     if (clock.getElapsedTime().asSeconds() >= (timeWaiting / speed)) {
         moveStatus = MOVING;
+        ((housePoint *)(_home))->removePersonHouse(this);
     }
 }
 
@@ -97,6 +103,7 @@ void Person::statusWorking(float speed)
 {
     if (clock.getElapsedTime().asSeconds() >= (timeWaiting / speed)) {
         moveStatus = MOVING;
+        ((workPoint *)(_obj))->removePersonWork(this);
     }
 }
 

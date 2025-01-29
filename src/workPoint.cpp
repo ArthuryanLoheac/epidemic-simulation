@@ -15,7 +15,7 @@ static void checkMakeSick(std::vector<Person *> lst)
 {
     for (Person *&j : lst) {
         if (j->state == NOT_SICK && ((rand() % 100) < PERCENT_TRANSMISSION_WORK)) {
-            j->state = SICK;
+            j->setSick();
         }
     }
 }
