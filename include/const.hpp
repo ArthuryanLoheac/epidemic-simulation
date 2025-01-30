@@ -26,4 +26,5 @@
     const int PERCENT_TRANSMISSION_WORK = 5;
     const int PERCENT_TRANSMISSION_HOME = 10;
 
+    const int LIFE_TIME = 10;
 #endif

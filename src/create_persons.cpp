@@ -13,13 +13,14 @@ static CircleShape *create_circle(Vector2f pos)
     return circle;
 }
 
-static Person *create_person(int id, float x = 0.f, float y = 0.f)
+Person *create_person(int id, float x, float y)
 {
     Person *pers = new Person();
     pers->pos = Vector2f(x,y);
     pers->id = id;
     pers->circle = create_circle(pers->pos);
     pers->speed = (rand() % (SPEED_MAX - SPEED_MIN)) + SPEED_MIN;
+    pers->lifeTimeRemaining = (rand() % (LIFE_TIME - 1)) + 1;
     pers->setNewObj();
     return pers;
 }
@@ -28,7 +29,7 @@ void create_lst_person(vector<Person *> &lst)
 {
     lst.clear();
     for (int i = 0; i < NUMBER_PERSON; i++) {
-        lst.push_back(create_person(i, 0, 0));
+        lst.push_back(create_person(i));
     }
     for (int i = 0; i < min(NUMBER_INFECTED_START, NUMBER_PERSON); i++)
         lst[i]->setSick();

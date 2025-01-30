@@ -12,7 +12,8 @@ enum PersonDisease {
     SICK,
     RECOVERED,
     IMUNE,
-    DEAD
+    DEAD,
+    LIFE_DEATH
 };
 
 enum PersonMovingStatus {
@@ -38,6 +39,7 @@ class Person {
         interetPoint *_obj;
         sf::Clock clock;
         float timeWaiting;
+        int lifeTimeRemaining;
 
         void setHome(interetPoint *home);
         void setNewObj(std::vector<interetPoint *> &lstInteretPoints);

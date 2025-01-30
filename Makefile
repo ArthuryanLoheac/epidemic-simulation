@@ -5,10 +5,6 @@
 ## makefile
 ##
 
-
-.SILENT:
-.PHONY: clean fclean
-
 GREEN=\033[0;32m
 RED=\033[0;31m
 YELLOW=\033[01;33m
@@ -83,7 +79,8 @@ fclean: clean
 	rm -f unit_tests
 
 %.o: %.cpp
-	@printf "$(YEL)[⚒️ ] $(BLUE)Compiling, $(GREEN)$@$(NC)\n"
+	mkdir -p $(dir $@)
+	@printf "$(YEL)[⚒️ ] $(BLUE)Compiling, $(GREEN)$(@F)$(NC)\n"
 	@$(COMPILER) -c $(CFLAGS) $< -o $@
 
 re: fclean all

@@ -17,10 +17,27 @@ static void setHerosNewDatas(std::vector<interetPoint *> lstWork,
     std::vector<Person *> &heros)
 {
     for (int i = 0; i < heros.size(); i++) {
-        heros[i]->setNewObj(lstWork);
-        heros[i]->setNewDay();
-        if (heros[i]->state == SICK)
-            updateHerosSick(heros[i]);
+        if (heros[i]->state != DEAD) {
+            heros[i]->setNewObj(lstWork);
+            heros[i]->setNewDay();
+            if (heros[i]->state == SICK)
+                updateHerosSick(heros[i]);
+        }
+    }
+}
+
+static bool isEven(Person *n) {
+    return n->state == LIFE_DEATH;
+}
+
+static void resetLen(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints)
+{
+    Person *p;
+
+    while (heros.size() < NUMBER_PERSON) {
+        p = create_person(0, 0, heros.back()->id + 1);
+        assignOnePerson(lstInteretPoints, p);
+        heros.push_back(p);
     }
 }
 
@@ -32,4 +49,6 @@ void newDay(std::vector<Person *> &heros,
 
     game->Days++;
     setHerosNewDatas(lstWork, heros);
+    heros.erase(std::remove_if(heros.begin(), heros.end(), isEven), heros.end());
+    resetLen(heros, lstInteretPoints);
 }

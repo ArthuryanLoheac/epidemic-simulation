@@ -21,6 +21,9 @@ void Person::setNewDay()
     moveStatus = WAITING_AT_HOME;
     timeWaiting = rand() % 3;
     clock.restart();
+    lifeTimeRemaining--;
+    if (lifeTimeRemaining <= 0)
+        state = LIFE_DEATH;
 }
 
 void Person::setHome(interetPoint *home)
