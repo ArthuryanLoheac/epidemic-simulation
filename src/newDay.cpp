@@ -33,9 +33,11 @@ static bool isEven(Person *n) {
 static void resetLen(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints)
 {
     Person *p;
+    bool r = false;
 
     while (heros.size() < NUMBER_PERSON) {
-        p = create_person(0, 0, heros.back()->id + 1);
+        r = (rand() % 100) < PERCENT_IMUNE_BORN;
+        p = create_person(heros.back()->id + 1, r);
         assignOnePerson(lstInteretPoints, p);
         heros.push_back(p);
     }

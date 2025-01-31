@@ -12,10 +12,10 @@ static CircleShape *create_circle(Vector2f pos)
     return circle;
 }
 
-Person::Person(float x, float y, int uid)
+Person::Person(float x, float y, int uid, bool imune)
 {
     setNewDay();
-    state = NOT_SICK;
+    state = imune ? IMUNE : NOT_SICK;
     pos = Vector2f(x,y);
     id = uid;
     circle = create_circle(pos);

@@ -47,7 +47,7 @@ class Person {
         void setNewObj();
         void update_pers(float deltaTime, float speedGeneral,
             std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints);
-        Person(float x, float y, int uid);
+        Person(float x, float y, int uid, bool imune = false);
         void setSick();
         void setNewDay();
         void update_color();
