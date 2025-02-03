@@ -34,7 +34,7 @@ void Person::setNewDay()
 {
     nbVisitsRemaining = ((rand() % NB_PLACE_VISIT_A_DAY) + 1);
     moveStatus = WAITING_AT_HOME;
-    timeWaiting = rand() % 3;
+    timeWaiting = (rand() % 300) / 100.f;
     clock.restart();
     lifeTimeRemaining--;
     if (lifeTimeRemaining <= 0)
