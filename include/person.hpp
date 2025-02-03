@@ -13,7 +13,8 @@ enum PersonDisease {
     RECOVERED,
     IMUNE,
     DEAD,
-    LIFE_DEATH
+    LIFE_DEATH,
+    IMUNE_DEATH
 };
 
 enum PersonMovingStatus {

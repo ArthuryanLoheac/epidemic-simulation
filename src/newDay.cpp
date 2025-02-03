@@ -27,17 +27,24 @@ static void setHerosNewDatas(std::vector<interetPoint *> lstWork,
 }
 
 static bool isEven(Person *n) {
-    return n->state == LIFE_DEATH;
+    return (n->state == LIFE_DEATH || n->state == IMUNE_DEATH);
 }
 
-static void resetLen(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints)
+static void resetLen(std::vector<Person *> &heros,
+    std::vector<interetPoint *> &lstInteretPoints, int nbImune, int nbRecovered)
 {
     Person *p;
     bool r = false;
 
     while (heros.size() < NUMBER_PERSON) {
         r = (rand() % 100) < PERCENT_IMUNE_BORN;
+        if (nbRecovered)
+            nbRecovered--;
+        else
+            r = false;
         p = create_person(heros.back()->id + 1, r);
+        if (nbImune-- > 0)
+            p->state = IMUNE;
         assignOnePerson(lstInteretPoints, p);
         heros.push_back(p);
     }
@@ -48,9 +55,18 @@ void newDay(std::vector<Person *> &heros,
 {
     std::vector<interetPoint *> lstWork;
     setListType(lstInteretPoints, lstWork, interetPoint::WORK);
+    int nbImune = 0;
+    int nbRecovered = 0;
 
     game->Days++;
     setHerosNewDatas(lstWork, heros);
-    heros.erase(std::remove_if(heros.begin(), heros.end(), isEven), heros.end());
-    resetLen(heros, lstInteretPoints);
+    for (auto &i : heros) {
+        if (i->state == IMUNE_DEATH)
+            nbImune++;
+        if (i->state == RECOVERED)
+            nbRecovered++;
+    }
+    heros.erase(std::remove_if(heros.begin(), heros.end(),
+        isEven), heros.end());
+    resetLen(heros, lstInteretPoints, nbImune, nbRecovered);
 }

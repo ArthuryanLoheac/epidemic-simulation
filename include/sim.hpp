@@ -59,4 +59,5 @@
         std::vector<interetPoint *> &lstInteretPoints, window_game* game);
     Person *create_person(int id, bool imune = false, float x = 0.f, float y = 0.f);
     void assignOnePerson(std::vector<interetPoint *> &lstInteretPoints, Person *hero);
+
 #endif

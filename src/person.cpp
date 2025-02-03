@@ -37,8 +37,12 @@ void Person::setNewDay()
     timeWaiting = (rand() % 300) / 100.f;
     clock.restart();
     lifeTimeRemaining--;
-    if (lifeTimeRemaining <= 0)
-        state = LIFE_DEATH;
+    if (lifeTimeRemaining <= 0) {
+        if (state == IMUNE)
+            state = IMUNE_DEATH;
+        else
+            state = LIFE_DEATH;
+    }
 }
 
 void Person::setHome(interetPoint *home)
@@ -63,7 +67,8 @@ void Person::setNewObj(interetPoint *point)
     computeDir();
 }
 
-void Person::setListType_pers(std::vector<interetPoint*> &lstSrc, std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type)
+void Person::setListType_pers(std::vector<interetPoint*> &lstSrc,
+    std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type)
 {
     for (int i = 0; i < lstSrc.size(); i++) {
         if (lstSrc[i]->getType() == type) {

@@ -27,5 +27,5 @@
     const int PERCENT_TRANSMISSION_HOME = 10;
 
     const int LIFE_TIME = 10;
-    const int PERCENT_IMUNE_BORN = 1;
+    const int PERCENT_IMUNE_BORN = 5;
 #endif
