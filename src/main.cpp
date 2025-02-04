@@ -6,6 +6,7 @@ void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretP
 {
     game.percentImune.clear();
     game.percentRecovered.clear();
+    game.percentDead.clear();
     game.percentSick.clear();
     create_lst_person(heros);
     createLstInteretPoints(lstInteretPoints);

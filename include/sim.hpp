@@ -42,6 +42,7 @@
         std::deque<float> percentSick;
         std::deque<float> percentImune;
         std::deque<float> percentRecovered;
+        std::deque<float> percentDead;
     };
 
     void draw(window_game *game, std::vector<Person *> lst,

@@ -4,17 +4,17 @@
     const int WIN_WIDTH = 1080;
     const int WIN_HEIGHT = 720;
 
-    const int RADIUS_CIRCLE = 2;
+    const int RADIUS_CIRCLE = 5;
 
-    const int NB_HOUSE = 300;
-    const int HOUSE_SIZE = 4;
+    const int NB_HOUSE = 30;
+    const int HOUSE_SIZE = 20;
 
-    const int NB_WORK_POINT = 200;
-    const int MIN_SECONDS_WORKING = 4;
-    const int MAX_SECONDS_WORKING = 2;
-    const int NB_PLACE_VISIT_A_DAY = 2;
+    const int NB_WORK_POINT = 20;
+    const int MIN_SECONDS_WORKING = 2;
+    const int MAX_SECONDS_WORKING = 1;
+    const int NB_PLACE_VISIT_A_DAY = 1;
 
-    const int NUMBER_PERSON = 2000;
+    const int NUMBER_PERSON = 200;
     const int SPEED_MIN = 80;
     const int SPEED_MAX = 100;
 

@@ -79,6 +79,9 @@ void newDay(std::vector<Person *> &heros,
     game->percentRecovered.push_front(getPercentType(RECOVERED, heros));
     if (game->percentRecovered.size() > 200)
         game->percentRecovered.pop_back();
+    game->percentDead.push_front(getPercentType(DEAD, heros));
+    if (game->percentDead.size() > 200)
+        game->percentDead.pop_back();
 
     game->Days++;
     setHerosNewDatas(lstWork, heros);
