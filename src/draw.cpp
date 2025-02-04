@@ -38,6 +38,20 @@ void paintPixels(int start, int end, window_game *game, int i, sf::CircleShape &
     }
 }
 
+void drawTxtGraph(window_game *game)
+{
+    sf::Font f;
+    sf::Text t;
+
+    f.loadFromFile("font/Oswald-Bold.ttf");
+    t.setFont(f);
+    t.setString("100%");
+    t.setFillColor(BLUE);
+    t.setCharacterSize(14);
+    t.setPosition(WIN_WIDTH-200, WIN_HEIGHT-200);
+    game->window->draw(t);
+}
+
 void draw_graph(window_game *game)
 {
     sf::CircleShape c;
@@ -52,6 +66,7 @@ void draw_graph(window_game *game)
     r.setFillColor(sf::Color::Transparent);
     r.setOutlineThickness(2);
     game->window->draw(r);
+    drawTxtGraph(game);
 
     for (int i = 0; i < game->percentSick.size(); i++) {
         Dead = (game->percentDead[i] * 200);
