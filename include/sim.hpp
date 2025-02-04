@@ -11,6 +11,7 @@
     #include "workPoint.hpp"
     #include <string>
     #include <vector>
+    #include <deque>
 
     struct stats_game {
         int nb_imune;
@@ -37,6 +38,10 @@
         Text* txt_days;
         float speed;
         Text* txt_speed;
+
+        std::deque<float> percentSick;
+        std::deque<float> percentImune;
+        std::deque<float> percentRecovered;
     };
 
     void draw(window_game *game, std::vector<Person *> lst,

@@ -64,7 +64,6 @@ void updateAllInteretPoint(std::vector<interetPoint *> &lstInteretPoints, window
     }
 }
 
-
 void update(std::vector<Person *> &heros, window_game* game, std::vector<interetPoint *> &lstInteretPoints)
 {
     if (isAllBack(heros) == 0)
@@ -77,4 +76,5 @@ void update(std::vector<Person *> &heros, window_game* game, std::vector<interet
 
     game->txt_days->setString("Days : " + to_string(game->Days));
     game->txt_speed->setString("Speed : x" + std::format("{:.1f}", game->speed));
+
 }

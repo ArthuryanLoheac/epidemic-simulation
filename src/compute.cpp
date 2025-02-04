@@ -4,7 +4,7 @@ using namespace sf;
 
 static void compute_speed(Event event, window_game *game)
 {
-    float speedMax = 10;
+    float speedMax = 20;
     float speedMin = 0;
     float diffSpeed = 0.2f;
 

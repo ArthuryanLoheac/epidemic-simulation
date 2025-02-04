@@ -130,7 +130,6 @@ void Person::statusWorking(float speed)
     }
 }
 
-
 void Person::update_pers(float deltaTime, float speedGeneral
     , std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints)
 {
@@ -144,7 +143,7 @@ void Person::update_pers(float deltaTime, float speedGeneral
     if (moveStatus == WAITING_AT_HOME)
         statusWaitingAtHome(speedGeneral);
 
-    if (pos.x < 0 || pos.y < 0 || pos.x > WIN_WIDTH || pos.y > WIN_HEIGHT)
+    if (pos.x < 0 || pos.y < 0 || pos.x > (WIN_WIDTH - 200) || pos.y > WIN_HEIGHT)
         computeDir();
     circle->setPosition(pos);
 }

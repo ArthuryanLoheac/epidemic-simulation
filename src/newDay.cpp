@@ -50,6 +50,18 @@ static void resetLen(std::vector<Person *> &heros,
     }
 }
 
+float getPercentType(PersonDisease type, std::vector<Person *> &heros)
+{
+    int len = NUMBER_PERSON;
+    int nbType = 0;
+
+    for (auto &i : heros) {
+        if (i->state == type)
+            nbType++;
+    }
+    return (float)nbType / (float)len;
+}
+
 void newDay(std::vector<Person *> &heros,
     std::vector<interetPoint *> &lstInteretPoints, window_game* game)
 {
@@ -57,6 +69,16 @@ void newDay(std::vector<Person *> &heros,
     setListType(lstInteretPoints, lstWork, interetPoint::WORK);
     int nbImune = 0;
     int nbRecovered = 0;
+
+    game->percentSick.push_front(getPercentType(SICK, heros));
+    if (game->percentSick.size() > 200)
+        game->percentSick.pop_back();
+    game->percentImune.push_front(getPercentType(IMUNE, heros));
+    if (game->percentImune.size() > 200)
+        game->percentImune.pop_back();
+    game->percentRecovered.push_front(getPercentType(RECOVERED, heros));
+    if (game->percentRecovered.size() > 200)
+        game->percentRecovered.pop_back();
 
     game->Days++;
     setHerosNewDatas(lstWork, heros);

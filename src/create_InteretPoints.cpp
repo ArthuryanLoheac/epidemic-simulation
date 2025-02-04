@@ -7,13 +7,13 @@ void createLstInteretPoints(std::vector<interetPoint *> &lst)
     lst.clear();
     for (int i = 0; i < NB_HOUSE; i++) {
         lst.push_back(new housePoint(
-            rand() % (WIN_WIDTH - (HOUSE_SIZE + HOUSE_SIZE/2)) + (HOUSE_SIZE / 2),
+            rand() % (WIN_WIDTH - 200 - (HOUSE_SIZE + HOUSE_SIZE/2)) + (HOUSE_SIZE / 2),
             rand() % (WIN_HEIGHT - (HOUSE_SIZE + HOUSE_SIZE/2)) + (HOUSE_SIZE / 2),
             HOUSE_SIZE, HOUSE_SIZE));
     }
     for (int i = 0; i < NB_WORK_POINT; i++) {
         lst.push_back(new workPoint(
-            rand() % (WIN_WIDTH - (HOUSE_SIZE + HOUSE_SIZE/2)) + (HOUSE_SIZE / 2),
+            rand() % (WIN_WIDTH - 200 - (HOUSE_SIZE + HOUSE_SIZE/2)) + (HOUSE_SIZE / 2),
             rand() % (WIN_HEIGHT - (HOUSE_SIZE + HOUSE_SIZE/2)) + (HOUSE_SIZE / 2),
             HOUSE_SIZE, HOUSE_SIZE));
     }

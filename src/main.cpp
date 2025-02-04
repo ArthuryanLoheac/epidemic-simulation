@@ -4,6 +4,9 @@ using namespace sf;
 
 void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game &game)
 {
+    game.percentImune.clear();
+    game.percentRecovered.clear();
+    game.percentSick.clear();
     create_lst_person(heros);
     createLstInteretPoints(lstInteretPoints);
     assignPerson(heros, lstInteretPoints);
