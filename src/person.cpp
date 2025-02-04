@@ -17,6 +17,7 @@ Person::Person(float x, float y, int uid, bool imune)
     setNewDay();
     state = imune ? IMUNE : NOT_SICK;
     pos = Vector2f(x,y);
+    prevPos = pos;
     id = uid;
     circle = create_circle(pos);
     speed = (rand() % (SPEED_MAX - SPEED_MIN)) + SPEED_MIN;
@@ -105,9 +106,14 @@ void Person::arrivedAtObjectif(std::vector<interetPoint *> &lstInteretPoints)
 
 void Person::statusMoving(float deltaTime, std::vector<interetPoint *> &lstInteretPoints)
 {
+    prevPos = pos;
     pos += (direction * deltaTime * speed);
     if (get_dist(pos, objectif) <= 5.f)
         arrivedAtObjectif(lstInteretPoints);
+    else if (get_dist(prevPos, objectif) < get_dist(pos, objectif)) {
+        pos = objectif;
+        arrivedAtObjectif(lstInteretPoints);
+    }
 }
 
 void Person::statusAtHome()

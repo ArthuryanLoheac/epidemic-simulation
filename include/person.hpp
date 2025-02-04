@@ -31,6 +31,7 @@ class Person {
         float speed;
         int id;
         Vector2f pos;
+        Vector2f prevPos;
         Vector2f objectif;
         int dayInfection;
 
