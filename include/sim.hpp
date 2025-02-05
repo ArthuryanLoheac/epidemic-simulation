@@ -10,9 +10,12 @@
     #include "housePoint.hpp"
     #include "workPoint.hpp"
     #include "button.hpp"
+    #include "slideur.hpp"
     #include <string>
     #include <vector>
     #include <deque>
+
+    class Slideur;
 
     struct stats_game {
         int nb_imune;
@@ -65,10 +68,7 @@
 
         datas actual;
         datas next;
-        button *nbPeoplePlus;
-        sf::Text *txtPeople;
-        sf::Text *nbPeople;
-        button *nbPeopleMinus;
+        Slideur *Peoples;
 
         std::deque<float> percentSick;
         std::deque<float> percentImune;

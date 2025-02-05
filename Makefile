@@ -35,6 +35,7 @@ SRC = src/draw.cpp \
 	src/update_all_person.cpp \
 	src/newDay.cpp \
 	include/button.cpp \
+	include/slideur.cpp \
 
 SRC_TESTS = tests/test_1.cpp \
 

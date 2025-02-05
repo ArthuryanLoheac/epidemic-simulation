@@ -25,19 +25,6 @@ static Text* create_text(String txt, Font* fnt, int i, Color c)
     return text;
 }
 
-static Text* create_text_right(String txt, Font* fnt, float i, Color c, int size)
-{
-    Text* text = new Text();
-
-    text->setFont(*fnt);
-    text->setString(txt);
-    text->setCharacterSize(size);
-    text->setFillColor(c);
-    text->setStyle(Text::Bold);
-    text->setPosition(WIN_WIDTH-150, i*24);
-    return text;
-}
-
 static stats_game* create_stats(Font* fnt)
 {
     stats_game *stats = new stats_game();
@@ -64,12 +51,7 @@ window_game* create_window_game()
     sf::Font *f = new sf::Font;
     f->loadFromFile("font/Oswald-Bold.ttf");
 
-    game->nbPeoplePlus = new button("assets/plus.png", 30, 30);
-    game->nbPeoplePlus->setPosition(WIN_WIDTH-25, 35);
-    game->txtPeople = create_text_right("Number people", f, 1.5f, sf::Color::White, 13);
-    game->nbPeople = create_text_right("0000", f, 0.6f, sf::Color::White, 18);
-    game->nbPeopleMinus = new button("assets/minus.png", 25, 25);
-    game->nbPeopleMinus->setPosition(WIN_WIDTH-175, 35);
+    game->Peoples = new Slideur("Nb People", 10);
 
     game->window = create_window();
     game->clock = new Clock();
