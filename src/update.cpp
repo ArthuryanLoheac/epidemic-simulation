@@ -76,4 +76,6 @@ void update(std::vector<Person *> &heros, window_game* game, std::vector<interet
 
     game->txt_days->setString("Days : " + to_string(game->Days));
     game->txt_speed->setString("Speed : x" + std::format("{:.1f}", game->speed));
+
+    game->nbPeople->setString(std::to_string(game->next._NUMBER_PERSON));
 }

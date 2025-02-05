@@ -14,11 +14,12 @@ button::button(std::string path, int x, int y)
     Texture.loadFromFile(path);
     Texture.setSmooth(true);
     Sprite.setTexture(Texture);
+    Sprite.setOrigin(Sprite.getGlobalBounds().width / 2,
+        Sprite.getGlobalBounds().height / 2);
     Sprite.setScale(x / Sprite.getGlobalBounds().width,
         y / Sprite.getGlobalBounds().height);
     size.x = x;
     size.y = y;
-    Sprite.setOrigin(size.x / 2, size.y / 2);
 }
 
 void button::draw(sf::RenderWindow *window)

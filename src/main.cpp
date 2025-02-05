@@ -4,7 +4,7 @@ using namespace sf;
 
 void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game *game)
 {
-    game->actual._NUMBER_PERSON = game->next._NUMBER_PERSON;
+    game->actual = game->next;
     game->percentImune.clear();
     game->percentRecovered.clear();
     game->percentDead.clear();

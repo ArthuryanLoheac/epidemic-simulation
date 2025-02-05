@@ -65,7 +65,10 @@
 
         datas actual;
         datas next;
-        button *nbPeople;
+        button *nbPeoplePlus;
+        sf::Text *txtPeople;
+        sf::Text *nbPeople;
+        button *nbPeopleMinus;
 
         std::deque<float> percentSick;
         std::deque<float> percentImune;

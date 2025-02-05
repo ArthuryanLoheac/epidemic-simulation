@@ -30,6 +30,11 @@ void compute_event(Event event, window_game *game, std::vector<Person *> &heros,
         init(heros, lst, game);
     }
     compute_speed(event, game);
-    if (game->nbPeople->update(event))
+    if (game->nbPeoplePlus->update(event))
         game->next._NUMBER_PERSON += 10;
+    if (game->nbPeopleMinus->update(event)) {
+        game->next._NUMBER_PERSON -= 10;
+        if (game->next._NUMBER_PERSON < 0)
+            game->next._NUMBER_PERSON = 0;
+    }
 }
