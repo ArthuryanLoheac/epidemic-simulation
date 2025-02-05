@@ -23,5 +23,5 @@ class interetPoint
         interetPoint::TypePoint getType(void);
         sf::Vector2f getPos(void);
         void draw(sf::RenderWindow *window);
-        virtual void update(float speed);
+        virtual void update(float speed, int percent);
 };

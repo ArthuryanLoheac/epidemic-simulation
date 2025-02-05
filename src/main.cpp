@@ -10,7 +10,7 @@ void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretP
     game->percentDead.clear();
     game->percentSick.clear();
     create_lst_person(heros, game);
-    createLstInteretPoints(lstInteretPoints);
+    createLstInteretPoints(lstInteretPoints, game);
     assignPerson(heros, lstInteretPoints);
     game->Days = 1;
 }
@@ -32,7 +32,7 @@ void deleteAll(window_game* game, std::vector<Person *> heros, std::vector<inter
     delete game;
     for (int i = 0; i < game->actual._NUMBER_PERSON; i++)
         delete heros[i];
-    for (int i = 0; i < NB_HOUSE + NB_WORK_POINT; i++)
+    for (int i = 0; i < game->actual._NB_HOUSE + game->actual._NB_WORK_POINT; i++)
         delete lstInteretPoints[i];
 }
 

@@ -58,9 +58,9 @@ void updateAllInteretPoint(std::vector<interetPoint *> &lstInteretPoints, window
 {
     for (interetPoint *&i : lstInteretPoints) {
         if (dynamic_cast<housePoint *>(i))
-            ((housePoint *)(i))->update(game->speed);
+            ((housePoint *)(i))->update(game->speed, game->actual._PERCENT_TRANSMISSION_HOME);
         if (dynamic_cast<workPoint *>(i))
-            ((workPoint *)(i))->update(game->speed);
+            ((workPoint *)(i))->update(game->speed, game->actual._PERCENT_TRANSMISSION_WORK);
     }
 }
 

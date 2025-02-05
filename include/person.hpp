@@ -50,9 +50,9 @@ class Person {
         void setNewObj();
         void update_pers(float deltaTime, float speedGeneral,
             std::vector<Person *> lst, std::vector<interetPoint *> &lstInteretPoints);
-        Person(float x, float y, int uid, int radius, bool imune = false);
+        Person(float x, float y, int uid, int radius, int NB_PLACE_VISIT, int LIFE_TIM, bool imune = false);
         void setSick();
-        void setNewDay();
+        void setNewDay(int NB_PLACE_VISIT);
         void update_color();
     private:
         Vector2f direction;

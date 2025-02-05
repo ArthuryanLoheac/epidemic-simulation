@@ -2,20 +2,20 @@
 
 using namespace sf;
 
-void createLstInteretPoints(std::vector<interetPoint *> &lst)
+void createLstInteretPoints(std::vector<interetPoint *> &lst, window_game *game)
 {
     lst.clear();
-    for (int i = 0; i < NB_HOUSE; i++) {
+    for (int i = 0; i < game->actual._NB_HOUSE; i++) {
         lst.push_back(new housePoint(
-            rand() % (WIN_WIDTH - 200 - (HOUSE_SIZE + HOUSE_SIZE/2)) + (HOUSE_SIZE / 2),
-            rand() % (WIN_HEIGHT - (HOUSE_SIZE + HOUSE_SIZE/2)) + (HOUSE_SIZE / 2),
-            HOUSE_SIZE, HOUSE_SIZE));
+            rand() % (WIN_WIDTH - 200 - (game->actual._HOUSE_SIZE + game->actual._HOUSE_SIZE/2)) + (game->actual._HOUSE_SIZE / 2),
+            rand() % (WIN_HEIGHT - (game->actual._HOUSE_SIZE + game->actual._HOUSE_SIZE/2)) + (game->actual._HOUSE_SIZE / 2),
+            game->actual._HOUSE_SIZE, game->actual._HOUSE_SIZE));
     }
-    for (int i = 0; i < NB_WORK_POINT; i++) {
+    for (int i = 0; i < game->actual._NB_WORK_POINT; i++) {
         lst.push_back(new workPoint(
-            rand() % (WIN_WIDTH - 200 - (HOUSE_SIZE + HOUSE_SIZE/2)) + (HOUSE_SIZE / 2),
-            rand() % (WIN_HEIGHT - (HOUSE_SIZE + HOUSE_SIZE/2)) + (HOUSE_SIZE / 2),
-            HOUSE_SIZE, HOUSE_SIZE));
+            rand() % (WIN_WIDTH - 200 - (game->actual._HOUSE_SIZE + game->actual._HOUSE_SIZE/2)) + (game->actual._HOUSE_SIZE / 2),
+            rand() % (WIN_HEIGHT - (game->actual._HOUSE_SIZE + game->actual._HOUSE_SIZE/2)) + (game->actual._HOUSE_SIZE / 2),
+            game->actual._HOUSE_SIZE, game->actual._HOUSE_SIZE));
     }
 }
 

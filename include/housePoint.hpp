@@ -10,7 +10,7 @@ class housePoint : public interetPoint
         housePoint(size_t x, size_t y, size_t sizeX, size_t sizeY);
         std::vector<Person *> lst;
         ~housePoint();
-        void update(float speed) override;
+        void update(float speed, int percent) override;
         void addPersonHouse(Person *pers);
         void removePersonHouse(Person *pers);
 };

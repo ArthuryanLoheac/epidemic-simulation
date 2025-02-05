@@ -34,7 +34,7 @@ void interetPoint::draw(sf::RenderWindow *window)
     window->draw(_rect);
 }
 
-void interetPoint::update(float speed)
+void interetPoint::update(float speed, int percent)
 {
 
 }

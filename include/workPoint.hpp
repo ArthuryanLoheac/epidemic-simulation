@@ -11,7 +11,7 @@ class workPoint : public interetPoint
     public:
         workPoint(size_t x, size_t y, size_t sizeX, size_t sizeY);
         ~workPoint();
-        void update(float speed) override;
+        void update(float speed, int percent) override;
         std::vector<Person *> lst;
         void addPersonWork(Person *pers);
         void removePersonWork(Person *pers);

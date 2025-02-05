@@ -14,12 +14,12 @@ static void updateHerosSick(Person *hero)
 }
 
 static void setHerosNewDatas(std::vector<interetPoint *> lstWork,
-    std::vector<Person *> &heros)
+    std::vector<Person *> &heros, int NB_PLACE_VISIT)
 {
     for (int i = 0; i < heros.size(); i++) {
         if (heros[i]->state != DEAD) {
             heros[i]->setNewObj(lstWork);
-            heros[i]->setNewDay();
+            heros[i]->setNewDay(NB_PLACE_VISIT);
             if (heros[i]->state == SICK)
                 updateHerosSick(heros[i]);
         }
@@ -42,7 +42,8 @@ static void resetLen(std::vector<Person *> &heros,
             nbRecovered--;
         else
             r = false;
-        p = create_person(heros.back()->id + 1, game->actual._RADIUS_CIRCLE, r);
+        p = create_person(heros.back()->id + 1, game->actual._RADIUS_CIRCLE,
+            game->actual._NB_PLACE_VISIT_A_DAY, game->actual._LIFE_TIME, r);
         if (nbImune-- > 0)
             p->state = IMUNE;
         assignOnePerson(lstInteretPoints, p);
@@ -84,7 +85,7 @@ void newDay(std::vector<Person *> &heros,
         game->percentDead.pop_back();
 
     game->Days++;
-    setHerosNewDatas(lstWork, heros);
+    setHerosNewDatas(lstWork, heros, game->actual._NB_PLACE_VISIT_A_DAY);
     for (auto &i : heros) {
         if (i->state == IMUNE_DEATH)
             nbImune++;

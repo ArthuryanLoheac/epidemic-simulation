@@ -12,16 +12,19 @@ static CircleShape *create_circle(Vector2f pos, int radius)
     return circle;
 }
 
-Person::Person(float x, float y, int uid, int radius, bool imune)
+Person::Person(float x, float y, int uid, int radius, int NB_PLACE_VISIT, int LIFE_TIM, bool imune)
 {
-    setNewDay();
+    setNewDay(NB_PLACE_VISIT);
     state = imune ? IMUNE : NOT_SICK;
     pos = Vector2f(x,y);
     prevPos = pos;
     id = uid;
     circle = create_circle(pos, radius);
     speed = (rand() % (SPEED_MAX - SPEED_MIN)) + SPEED_MIN;
-    lifeTimeRemaining = (rand() % (LIFE_TIME - 1)) + 1;
+    if (LIFE_TIM <= 2)
+        lifeTimeRemaining = 2;
+    else
+        lifeTimeRemaining = (rand() % (LIFE_TIM - 1)) + 1;
     setNewObj();
 }
 
@@ -31,9 +34,9 @@ void Person::setSick()
     dayInfection = 3;
 }
 
-void Person::setNewDay()
+void Person::setNewDay(int NB_PLACE_VISIT)
 {
-    nbVisitsRemaining = ((rand() % NB_PLACE_VISIT_A_DAY) + 1);
+    nbVisitsRemaining = ((rand() % NB_PLACE_VISIT) + 1);
     moveStatus = WAITING_AT_HOME;
     timeWaiting = (rand() % 300) / 100.f;
     clock.restart();

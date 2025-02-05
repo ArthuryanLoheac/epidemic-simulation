@@ -11,21 +11,21 @@ workPoint::~workPoint()
 {
 }
 
-static void checkMakeSick(std::vector<Person *> lst)
+static void checkMakeSick(std::vector<Person *> lst, int percent)
 {
     for (Person *&j : lst) {
-        if (j->state == NOT_SICK && ((rand() % 100) < PERCENT_TRANSMISSION_WORK)) {
+        if (j->state == NOT_SICK && ((rand() % 100) < percent)) {
             j->setSick();
         }
     }
 }
 
-void workPoint::update(float speed)
+void workPoint::update(float speed, int percent)
 {
     if (clock.getElapsedTime().asSeconds() >= (1.f / speed)) {
         for (Person *&i : lst) {
             if (i->state == SICK)
-                checkMakeSick(lst);
+                checkMakeSick(lst, percent);
         }
         clock.restart();
     }

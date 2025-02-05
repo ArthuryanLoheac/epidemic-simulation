@@ -45,6 +45,8 @@ void compute_event(Event event, window_game *game, std::vector<Person *> &heros,
     game->next._PERCENT_TRANSMISSION_WORK = game->PercentTransmissionWork->update(event, game->next._PERCENT_TRANSMISSION_WORK);
     game->next._PERCENT_TRANSMISSION_HOME = game->PercentTransmissionHome->update(event, game->next._PERCENT_TRANSMISSION_HOME);
     game->next._LIFE_TIME = game->DayLifeTime->update(event, game->next._LIFE_TIME);
+    if (game->next._LIFE_TIME < 3)
+        game->next._LIFE_TIME = 3;
     game->next._PERCENT_IMUNE_BORN = game->PercentImuneBorn->update(event, game->next._PERCENT_IMUNE_BORN);
 
 }
