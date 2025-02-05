@@ -97,7 +97,23 @@ void draw(window_game *game, std::vector<Person *> lst, std::vector<interetPoint
     draw_stats(game->stats, game->window);
     game->window->draw(*(game->txt_days));
     game->window->draw(*(game->txt_speed));
+
     game->Peoples->draw(game->window);
+    game->RadiusCircle->draw(game->window);
+    game->Houses->draw(game->window);
+    game->HouseSize->draw(game->window);
+    game->Works->draw(game->window);
+    game->MinSecondsWork->draw(game->window);
+    game->MaxSecondsWork->draw(game->window);
+    game->PlaceVisited->draw(game->window);
+    game->NbInfectedStart->draw(game->window);
+    game->DaySick->draw(game->window);
+    game->PercentDead->draw(game->window);
+    game->PercentRecovered->draw(game->window);
+    game->PercentTransmissionWork->draw(game->window);
+    game->PercentTransmissionHome->draw(game->window);
+    game->DayLifeTime->draw(game->window);
+    game->PercentImuneBorn->draw(game->window);
 
     game->window->display();
 }

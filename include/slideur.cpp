@@ -1,6 +1,6 @@
 #include "slideur.hpp"
 
-static Text* create_text_right(String txt, Font* fnt, float i, Color c, int size)
+static Text* create_text_right(String txt, Font* fnt, float i, Color c, int size, bool b = false)
 {
     Text* text = new Text();
 
@@ -9,22 +9,25 @@ static Text* create_text_right(String txt, Font* fnt, float i, Color c, int size
     text->setCharacterSize(size);
     text->setFillColor(c);
     text->setStyle(Text::Bold);
-    text->setPosition(WIN_WIDTH-150, i*24);
+    if (b)
+        text->setPosition(WIN_WIDTH-180, i*20 - 5);
+    else
+        text->setPosition(WIN_WIDTH-150, i*20 - 5);
     return text;
 }
 
-Slideur::Slideur(std::string str, int sVal)
+Slideur::Slideur(std::string str, int sVal, int i)
 {
     sf::Font *f = new sf::Font;
     f->loadFromFile("font/Oswald-Bold.ttf");
     slideVal = sVal;
 
-    nbPeoplePlus = new button("assets/plus.png", 30, 30);
-    nbPeoplePlus->setPosition(WIN_WIDTH-25, 35);
-    txtPeople = create_text_right(str, f, 1.5f, sf::Color::White, 16);
-    nbPeople = create_text_right("0000", f, 0.6f, sf::Color::White, 20);
-    nbPeopleMinus = new button("assets/minus.png", 25, 25);
-    nbPeopleMinus->setPosition(WIN_WIDTH-175, 35);
+    nbPeoplePlus = new button("assets/plus.png", 20, 20);
+    nbPeoplePlus->setPosition(WIN_WIDTH-15, (i *30));
+    txtPeople = create_text_right(str, f, (i * 1.5f), sf::Color::White, 12);
+    nbPeople = create_text_right("0000", f, (i * 1.5f), sf::Color::White, 14, true);
+    nbPeopleMinus = new button("assets/minus.png", 15, 15);
+    nbPeopleMinus->setPosition(WIN_WIDTH-195, (i *30));
 }
 
 void Slideur::setValue(int value)

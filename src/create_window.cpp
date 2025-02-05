@@ -51,7 +51,22 @@ window_game* create_window_game()
     sf::Font *f = new sf::Font;
     f->loadFromFile("font/Oswald-Bold.ttf");
 
-    game->Peoples = new Slideur("Nb People", 10);
+    game->Peoples = new Slideur("Nb People", 10, 1);
+    game->RadiusCircle = new Slideur("Radius Cirle", 1, 2);
+    game->Houses = new Slideur("Nb House", 10, 3);
+    game->HouseSize = new Slideur("House Size", 1, 4);
+    game->Works = new Slideur("Nb Works", 10, 5);
+    game->MinSecondsWork = new Slideur("Min Sec Work", 1, 6);
+    game->MaxSecondsWork = new Slideur("Max Sec Work", 1, 7);
+    game->PlaceVisited = new Slideur("Place visit/day", 1, 8);
+    game->NbInfectedStart = new Slideur("Nb Infected Start", 1, 9);
+    game->DaySick = new Slideur("Day sick", 1, 10);
+    game->PercentDead = new Slideur("% Deads", 1, 11);
+    game->PercentRecovered = new Slideur("% Recover", 1, 12);
+    game->PercentTransmissionWork = new Slideur("% Transmission Work", 1, 13);
+    game->PercentTransmissionHome = new Slideur("% Transmission Home", 1, 14);
+    game->DayLifeTime = new Slideur("Life time (days)", 1, 15);
+    game->PercentImuneBorn = new Slideur("% Imune born", 1, 16);
 
     game->window = create_window();
     game->clock = new Clock();
@@ -64,6 +79,21 @@ window_game* create_window_game()
     game->txt_days = create_text("Days : 1",game->font, (WIN_HEIGHT / 24) - 2, sf::Color::White);
 
     game->actual._NUMBER_PERSON = NUMBER_PERSON;
-    game->next._NUMBER_PERSON = NUMBER_PERSON;
+    game->actual._RADIUS_CIRCLE = RADIUS_CIRCLE;
+    game->actual._NB_HOUSE = NB_HOUSE;
+    game->actual._HOUSE_SIZE = HOUSE_SIZE;
+    game->actual._NB_WORK_POINT = NB_WORK_POINT;
+    game->actual._MIN_SECONDS_WORKING = MIN_SECONDS_WORKING;
+    game->actual._MAX_SECONDS_WORKING = MAX_SECONDS_WORKING;
+    game->actual._NB_PLACE_VISIT_A_DAY = NB_PLACE_VISIT_A_DAY;
+    game->actual._NUMBER_INFECTED_START = NUMBER_INFECTED_START;
+    game->actual._TIME_SICK = TIME_SICK;
+    game->actual._PERCENT_DEAD = PERCENT_DEAD;
+    game->actual._PERCENT_RECOVERED = PERCENT_RECOVERED;
+    game->actual._PERCENT_TRANSMISSION_WORK = PERCENT_TRANSMISSION_WORK;
+    game->actual._PERCENT_TRANSMISSION_HOME = PERCENT_TRANSMISSION_HOME;
+    game->actual._LIFE_TIME = LIFE_TIME;
+    game->actual._PERCENT_IMUNE_BORN = PERCENT_IMUNE_BORN;
+    game->next = game->actual;
     return game;
 }

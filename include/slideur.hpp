@@ -17,7 +17,7 @@ class Slideur
         button *nbPeopleMinus;
         int slideVal;
     public:
-        Slideur(std::string str, int sVal);
+        Slideur(std::string str, int sVal, int i);
         void setValue(int value);
         void draw(RenderWindow *window);
         int update(sf::Event event, int value);

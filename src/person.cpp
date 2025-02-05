@@ -2,24 +2,24 @@
 #include "housePoint.hpp"
 #include "workPoint.hpp"
 
-static CircleShape *create_circle(Vector2f pos)
+static CircleShape *create_circle(Vector2f pos, int radius)
 {
     CircleShape *circle = new CircleShape();
-    circle->setRadius(RADIUS_CIRCLE);
-    circle->setOrigin(RADIUS_CIRCLE/2, RADIUS_CIRCLE/2);
+    circle->setRadius(radius);
+    circle->setOrigin(radius/2, radius/2);
     circle->setFillColor(NOT_SICK_COLOR);
     circle->setPosition(pos);
     return circle;
 }
 
-Person::Person(float x, float y, int uid, bool imune)
+Person::Person(float x, float y, int uid, int radius, bool imune)
 {
     setNewDay();
     state = imune ? IMUNE : NOT_SICK;
     pos = Vector2f(x,y);
     prevPos = pos;
     id = uid;
-    circle = create_circle(pos);
+    circle = create_circle(pos, radius);
     speed = (rand() % (SPEED_MAX - SPEED_MIN)) + SPEED_MIN;
     lifeTimeRemaining = (rand() % (LIFE_TIME - 1)) + 1;
     setNewObj();

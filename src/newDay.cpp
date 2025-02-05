@@ -42,7 +42,7 @@ static void resetLen(std::vector<Person *> &heros,
             nbRecovered--;
         else
             r = false;
-        p = create_person(heros.back()->id + 1, r);
+        p = create_person(heros.back()->id + 1, game->actual._RADIUS_CIRCLE, r);
         if (nbImune-- > 0)
             p->state = IMUNE;
         assignOnePerson(lstInteretPoints, p);

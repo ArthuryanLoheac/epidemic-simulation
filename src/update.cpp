@@ -78,4 +78,19 @@ void update(std::vector<Person *> &heros, window_game* game, std::vector<interet
     game->txt_speed->setString("Speed : x" + std::format("{:.1f}", game->speed));
 
     game->Peoples->setValue(game->next._NUMBER_PERSON);
+    game->RadiusCircle->setValue(game->next._RADIUS_CIRCLE);
+    game->Houses->setValue(game->next._NB_HOUSE);
+    game->HouseSize->setValue(game->next._HOUSE_SIZE);
+    game->Works->setValue(game->next._NB_WORK_POINT);
+    game->MinSecondsWork->setValue(game->next._MIN_SECONDS_WORKING);
+    game->MaxSecondsWork->setValue(game->next._MAX_SECONDS_WORKING);
+    game->PlaceVisited->setValue(game->next._NB_PLACE_VISIT_A_DAY);
+    game->NbInfectedStart->setValue(game->next._NUMBER_INFECTED_START);
+    game->DaySick->setValue(game->next._TIME_SICK);
+    game->PercentDead->setValue(game->next._PERCENT_DEAD);
+    game->PercentRecovered->setValue(game->next._PERCENT_RECOVERED);
+    game->PercentTransmissionWork->setValue(game->next._PERCENT_TRANSMISSION_WORK);
+    game->PercentTransmissionHome->setValue(game->next._PERCENT_TRANSMISSION_HOME);
+    game->DayLifeTime->setValue(game->next._LIFE_TIME);
+    game->PercentImuneBorn->setValue(game->next._PERCENT_IMUNE_BORN);
 }

@@ -1,8 +1,8 @@
 #ifndef CONST_H
     #define CONST_H
 
-    const int WIN_WIDTH = 1580;
-    const int WIN_HEIGHT = 1220;
+    const int WIN_WIDTH = 1080;
+    const int WIN_HEIGHT = 720;
 
     const int RADIUS_CIRCLE = 5;
 
