@@ -9,6 +9,7 @@
     #include "interetPoint.hpp"
     #include "housePoint.hpp"
     #include "workPoint.hpp"
+    #include "button.hpp"
     #include <string>
     #include <vector>
     #include <deque>
@@ -28,6 +29,29 @@
         Text* txt_recovered;
     };
 
+    struct datas {
+        int _WIN_WIDTH;
+        int _WIN_HEIGHT;
+        int _RADIUS_CIRCLE;
+        int _NB_HOUSE;
+        int _HOUSE_SIZE;
+        int _NB_WORK_POINT;
+        int _MIN_SECONDS_WORKING;
+        int _MAX_SECONDS_WORKING;
+        int _NB_PLACE_VISIT_A_DAY;
+        int _NUMBER_PERSON;
+        int _SPEED_MIN;
+        int _SPEED_MAX;
+        int _NUMBER_INFECTED_START;
+        int _TIME_SICK;
+        int _PERCENT_DEAD;
+        int _PERCENT_RECOVERED;
+        int _PERCENT_TRANSMISSION_WORK;
+        int _PERCENT_TRANSMISSION_HOME;
+        int _LIFE_TIME;
+        int _PERCENT_IMUNE_BORN;
+    };
+
     struct window_game {
         RenderWindow* window;
         Clock* clock;
@@ -38,6 +62,10 @@
         Text* txt_days;
         float speed;
         Text* txt_speed;
+
+        datas actual;
+        datas next;
+        button *nbPeople;
 
         std::deque<float> percentSick;
         std::deque<float> percentImune;
@@ -52,8 +80,8 @@
     window_game* create_window_game();
     void update(std::vector<Person *> &heros, window_game* game,
         std::vector<interetPoint *> &lstInteretPoints);
-    void create_lst_person(std::vector<Person *> &lst);
-    void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game &game);
+    void create_lst_person(std::vector<Person *> &lst, window_game *game);
+    void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game *game);
     void setListType(std::vector<interetPoint*> &lstSrc,
         std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);
     void createLstInteretPoints(std::vector<interetPoint *> &lst);

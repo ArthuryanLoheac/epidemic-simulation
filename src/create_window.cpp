@@ -49,6 +49,7 @@ window_game* create_window_game()
     srand((unsigned)time(0));
     window_game *game = new window_game();
 
+    game->nbPeople = new button("assets/plus.png", 50, 50);
     game->window = create_window();
     game->clock = new Clock();
     game->font = new Font();
@@ -58,5 +59,8 @@ window_game* create_window_game()
     game->Days = 1;
     game->txt_speed = create_text("Speed : x1",game->font, (WIN_HEIGHT / 24) - 1, sf::Color::White);
     game->txt_days = create_text("Days : 1",game->font, (WIN_HEIGHT / 24) - 2, sf::Color::White);
+
+    game->actual._NUMBER_PERSON = NUMBER_PERSON;
+    game->next._NUMBER_PERSON = NUMBER_PERSON;
     return game;
 }

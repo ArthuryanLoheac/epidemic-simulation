@@ -31,12 +31,12 @@ static bool isEven(Person *n) {
 }
 
 static void resetLen(std::vector<Person *> &heros,
-    std::vector<interetPoint *> &lstInteretPoints, int nbImune, int nbRecovered)
+    std::vector<interetPoint *> &lstInteretPoints, int nbImune, int nbRecovered, window_game *game)
 {
     Person *p;
     bool r = false;
 
-    while (heros.size() < NUMBER_PERSON) {
+    while (heros.size() < game->actual._NUMBER_PERSON) {
         r = (rand() % 100) < PERCENT_IMUNE_BORN;
         if (nbRecovered)
             nbRecovered--;
@@ -50,9 +50,9 @@ static void resetLen(std::vector<Person *> &heros,
     }
 }
 
-float getPercentType(PersonDisease type, std::vector<Person *> &heros)
+float getPercentType(PersonDisease type, std::vector<Person *> &heros, window_game* game)
 {
-    int len = NUMBER_PERSON;
+    int len = game->actual._NUMBER_PERSON;
     int nbType = 0;
 
     for (auto &i : heros) {
@@ -70,16 +70,16 @@ void newDay(std::vector<Person *> &heros,
     int nbImune = 0;
     int nbRecovered = 0;
 
-    game->percentSick.push_front(getPercentType(SICK, heros));
+    game->percentSick.push_front(getPercentType(SICK, heros, game));
     if (game->percentSick.size() > 200)
         game->percentSick.pop_back();
-    game->percentImune.push_front(getPercentType(IMUNE, heros));
+    game->percentImune.push_front(getPercentType(IMUNE, heros, game));
     if (game->percentImune.size() > 200)
         game->percentImune.pop_back();
-    game->percentRecovered.push_front(getPercentType(RECOVERED, heros));
+    game->percentRecovered.push_front(getPercentType(RECOVERED, heros, game));
     if (game->percentRecovered.size() > 200)
         game->percentRecovered.pop_back();
-    game->percentDead.push_front(getPercentType(DEAD, heros));
+    game->percentDead.push_front(getPercentType(DEAD, heros, game));
     if (game->percentDead.size() > 200)
         game->percentDead.pop_back();
 
@@ -93,5 +93,5 @@ void newDay(std::vector<Person *> &heros,
     }
     heros.erase(std::remove_if(heros.begin(), heros.end(),
         isEven), heros.end());
-    resetLen(heros, lstInteretPoints, nbImune, nbRecovered);
+    resetLen(heros, lstInteretPoints, nbImune, nbRecovered, game);
 }

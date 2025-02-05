@@ -97,6 +97,7 @@ void draw(window_game *game, std::vector<Person *> lst, std::vector<interetPoint
     draw_stats(game->stats, game->window);
     game->window->draw(*(game->txt_days));
     game->window->draw(*(game->txt_speed));
+    game->nbPeople->draw(game->window);
 
     game->window->display();
 }

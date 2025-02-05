@@ -2,16 +2,17 @@
 
 using namespace sf;
 
-void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game &game)
+void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game *game)
 {
-    game.percentImune.clear();
-    game.percentRecovered.clear();
-    game.percentDead.clear();
-    game.percentSick.clear();
-    create_lst_person(heros);
+    game->actual._NUMBER_PERSON = game->next._NUMBER_PERSON;
+    game->percentImune.clear();
+    game->percentRecovered.clear();
+    game->percentDead.clear();
+    game->percentSick.clear();
+    create_lst_person(heros, game);
     createLstInteretPoints(lstInteretPoints);
     assignPerson(heros, lstInteretPoints);
-    game.Days = 1;
+    game->Days = 1;
 }
 
 void deleteAll(window_game* game, std::vector<Person *> heros, std::vector<interetPoint *> lstInteretPoints)
@@ -29,7 +30,7 @@ void deleteAll(window_game* game, std::vector<Person *> heros, std::vector<inter
     delete game->txt_days;
     delete game->txt_speed;
     delete game;
-    for (int i = 0; i < NUMBER_PERSON; i++)
+    for (int i = 0; i < game->actual._NUMBER_PERSON; i++)
         delete heros[i];
     for (int i = 0; i < NB_HOUSE + NB_WORK_POINT; i++)
         delete lstInteretPoints[i];
@@ -40,7 +41,7 @@ int main()
     window_game* game = create_window_game();
     std::vector<Person *> heros;
     std::vector<interetPoint *> lstInteretPoints;
-    init(heros, lstInteretPoints, *game);
+    init(heros, lstInteretPoints, game);
 
     while (game->window->isOpen())
     {

@@ -34,6 +34,7 @@ SRC = src/draw.cpp \
 	src/create_InteretPoints.cpp \
 	src/update_all_person.cpp \
 	src/newDay.cpp \
+	include/button.cpp \
 
 SRC_TESTS = tests/test_1.cpp \
 
