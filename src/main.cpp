@@ -11,7 +11,7 @@ void init(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretP
     game->percentSick.clear();
     create_lst_person(heros, game);
     createLstInteretPoints(lstInteretPoints, game);
-    assignPerson(heros, lstInteretPoints);
+    assignPerson(heros, lstInteretPoints, game);
     game->Days = 1;
 }
 

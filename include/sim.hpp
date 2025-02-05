@@ -104,13 +104,13 @@
         std::vector<interetPoint*> &lstDest, interetPoint::TypePoint type);
     void createLstInteretPoints(std::vector<interetPoint *> &lst, window_game *game);
     void assignPerson(std::vector<Person *> &heros,
-        std::vector<interetPoint *> &lstInteretPoints);
+        std::vector<interetPoint *> &lstInteretPoints, window_game *game);
     void update_all_person(std::vector<Person *> &heros, window_game* game,
         std::vector<interetPoint *> &lstInteretPoints);
     void newDay(std::vector<Person *> &heros,
         std::vector<interetPoint *> &lstInteretPoints, window_game* game);
     Person *create_person(int id, int radius, int nbPlaceVisit, int lifeTim,
         bool imune = false, float x = 0.f, float y = 0.f);
-    void assignOnePerson(std::vector<interetPoint *> &lstInteretPoints, Person *hero);
+    void assignOnePerson(std::vector<interetPoint *> &lstInteretPoints, Person *hero, window_game *game);
 
 #endif

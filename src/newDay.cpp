@@ -1,12 +1,12 @@
 #include "sim.hpp"
 using namespace sf;
 
-static void updateHerosSick(Person *hero)
+static void updateHerosSick(Person *hero, window_game *game)
 {
     hero->dayInfection -= 1;
     if (hero->dayInfection == 0) {
         int r = (rand() % 100) + 1;
-        if (r < PERCENT_DEAD)
+        if (r < game->next._PERCENT_DEAD)
             hero->state = DEAD;
         else
             hero->state = RECOVERED;
@@ -14,14 +14,14 @@ static void updateHerosSick(Person *hero)
 }
 
 static void setHerosNewDatas(std::vector<interetPoint *> lstWork,
-    std::vector<Person *> &heros, int NB_PLACE_VISIT)
+    std::vector<Person *> &heros, int NB_PLACE_VISIT, window_game *game)
 {
     for (int i = 0; i < heros.size(); i++) {
         if (heros[i]->state != DEAD) {
             heros[i]->setNewObj(lstWork);
             heros[i]->setNewDay(NB_PLACE_VISIT);
             if (heros[i]->state == SICK)
-                updateHerosSick(heros[i]);
+                updateHerosSick(heros[i], game);
         }
     }
 }
@@ -37,7 +37,7 @@ static void resetLen(std::vector<Person *> &heros,
     bool r = false;
 
     while (heros.size() < game->actual._NUMBER_PERSON) {
-        r = (rand() % 100) < PERCENT_IMUNE_BORN;
+        r = (rand() % 100) < game->next._PERCENT_IMUNE_BORN;
         if (nbRecovered)
             nbRecovered--;
         else
@@ -46,7 +46,7 @@ static void resetLen(std::vector<Person *> &heros,
             game->actual._NB_PLACE_VISIT_A_DAY, game->actual._LIFE_TIME, r);
         if (nbImune-- > 0)
             p->state = IMUNE;
-        assignOnePerson(lstInteretPoints, p);
+        assignOnePerson(lstInteretPoints, p, game);
         heros.push_back(p);
     }
 }
@@ -85,7 +85,7 @@ void newDay(std::vector<Person *> &heros,
         game->percentDead.pop_back();
 
     game->Days++;
-    setHerosNewDatas(lstWork, heros, game->actual._NB_PLACE_VISIT_A_DAY);
+    setHerosNewDatas(lstWork, heros, game->actual._NB_PLACE_VISIT_A_DAY, game);
     for (auto &i : heros) {
         if (i->state == IMUNE_DEATH)
             nbImune++;

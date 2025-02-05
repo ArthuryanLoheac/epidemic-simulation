@@ -19,7 +19,7 @@ void createLstInteretPoints(std::vector<interetPoint *> &lst, window_game *game)
     }
 }
 
-void assignOnePerson(std::vector<interetPoint *> &lstInteretPoints, Person *hero)
+void assignOnePerson(std::vector<interetPoint *> &lstInteretPoints, Person *hero, window_game *game)
 {
     int id = 0;
     housePoint *house;
@@ -31,12 +31,12 @@ void assignOnePerson(std::vector<interetPoint *> &lstInteretPoints, Person *hero
     id = rand() % lstHouse.size();
     house = ((housePoint *)(lstHouse[id]));
     hero->setHome(house);
-    hero->pos = house->getPos() + sf::Vector2f((rand() % HOUSE_SIZE) - (HOUSE_SIZE/2), (rand() % HOUSE_SIZE) - (HOUSE_SIZE/2));
+    hero->pos = house->getPos() + sf::Vector2f((rand() % game->actual._HOUSE_SIZE) - (game->actual._HOUSE_SIZE/2), (rand() % game->actual._HOUSE_SIZE) - (game->actual._HOUSE_SIZE/2));
     hero->setNewObj(lstWork);
 }
 
 static void assignOnePerson(std::vector<interetPoint *> &lstInteretPoints, std::vector<Person *> &heros,
-    std::vector<interetPoint*> lstHouse, std::vector<interetPoint*> lstWork, int i)
+    std::vector<interetPoint*> lstHouse, std::vector<interetPoint*> lstWork, int i, window_game *game)
 {
     int id = 0;
     housePoint *house;
@@ -44,11 +44,11 @@ static void assignOnePerson(std::vector<interetPoint *> &lstInteretPoints, std::
     id = rand() % lstHouse.size();
     house = ((housePoint *)(lstHouse[id]));
     heros[i]->setHome(house);
-    heros[i]->pos = house->getPos() + sf::Vector2f((rand() % HOUSE_SIZE) - (HOUSE_SIZE/2), (rand() % HOUSE_SIZE) - (HOUSE_SIZE/2));
+    heros[i]->pos = house->getPos() + sf::Vector2f((rand() % game->actual._HOUSE_SIZE) - (game->actual._HOUSE_SIZE/2), (rand() % game->actual._HOUSE_SIZE) - (game->actual._HOUSE_SIZE/2));
     heros[i]->setNewObj(lstWork);
 }
 
-void assignPerson(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints)
+void assignPerson(std::vector<Person *> &heros, std::vector<interetPoint *> &lstInteretPoints, window_game *game)
 {
     std::vector<interetPoint*> lstHouse;
     setListType(lstInteretPoints, lstHouse, interetPoint::HOUSE);
@@ -56,5 +56,5 @@ void assignPerson(std::vector<Person *> &heros, std::vector<interetPoint *> &lst
     setListType(lstInteretPoints, lstWork, interetPoint::WORK);
 
     for (int i = 0; i < heros.size(); i++)
-        assignOnePerson(lstInteretPoints, heros, lstHouse, lstWork, i);
+        assignOnePerson(lstInteretPoints, heros, lstHouse, lstWork, i, game);
 }

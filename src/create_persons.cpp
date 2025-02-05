@@ -14,6 +14,6 @@ void create_lst_person(vector<Person *> &lst, window_game *game)
     for (int i = 0; i < game->actual._NUMBER_PERSON; i++)
         lst.push_back(create_person(i, game->actual._RADIUS_CIRCLE, game->actual._NB_PLACE_VISIT_A_DAY,
             game->actual._LIFE_TIME));
-    for (int i = 0; i < min(NUMBER_INFECTED_START, game->actual._NUMBER_PERSON); i++)
+    for (int i = 0; i < min(game->actual._NUMBER_INFECTED_START, game->actual._NUMBER_PERSON); i++)
         lst[i]->setSick(); 
 }
