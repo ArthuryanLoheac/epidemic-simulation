@@ -33,7 +33,7 @@ _Epidemic Simulation_ is a C++ project designed to model the spread of a disease
 
 ## 🔄 Controls
 - **R** : Restart the simulation.
-- **Arrow Up/Down** : Increase or decrease the simulation speed.
+- **Arrow left/Right** : Decrease or increase the simulation speed.
 
 ## 📊 Simulation Parameters
 
