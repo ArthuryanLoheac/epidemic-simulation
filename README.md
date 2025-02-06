@@ -16,7 +16,7 @@ _Epidemic Simulation_ is a C++ project designed to model the spread of a disease
 ## 🔺 Installation
 1. Clone the project repository:
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:ArthuryanLoheac/epidemic-simulation.git
    cd MaladieSimulation
    ```
 2. Compile the project with the command:
