@@ -9,15 +9,14 @@ _Epidemic Simulation_ is a C++ project designed to model the spread of a disease
 - ⏩ Controls to adjust simulation speed and restart the simulation.
 
 ## 📝 Prerequisites
-- **C++ Compiler** (g++, clang, etc.).
-- **Make** for build management.
+- **C++ Compiler** g++
 - **SFML Library** for graphical rendering.
 
 ## 🔺 Installation
 1. Clone the project repository:
    ```bash
    git clone git@github.com:ArthuryanLoheac/epidemic-simulation.git
-   cd MaladieSimulation
+   cd epidemic-simulation
    ```
 2. Compile the project with the command:
    ```bash
